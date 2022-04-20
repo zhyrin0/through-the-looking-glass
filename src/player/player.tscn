@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/player/player.gd" type="Script" id=1]
+[ext_resource path="res://src/player/debug.gd" type="Script" id=2]
+[ext_resource path="res://src/player/attack_charge.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 56 )
@@ -8,10 +10,14 @@ extents = Vector2( 32, 56 )
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 12
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 movement_speed = 300
 jump_height = 256
 jump_time = 0.5
 fall_gravity_multiplier = 1.35
+strong_charge = 0.5
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 polygon = PoolVector2Array( -32, -56, 32, -56, 32, 56, -32, 56 )
@@ -24,7 +30,30 @@ enabled = true
 cast_to = Vector2( 0, 64 )
 collision_mask = 8
 
-[node name="Debug" type="Node2D" parent="."]
+[node name="ProjectilePosition" type="Position2D" parent="."]
+position = Vector2( 56, 0 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
 
-[node name="Direction" type="Line2D" parent="Debug"]
+[node name="AttackChargeAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Debug" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="FacingDirection" type="Line2D" parent="Debug"]
 points = PoolVector2Array( 40, -24, 72, -24 )
+
+[node name="ProjectilePosition" type="Position2D" parent="Debug"]
+position = Vector2( 56, 0 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="ProjectileDirection" type="Line2D" parent="Debug/ProjectilePosition"]
+points = PoolVector2Array( 0, 0, 32, 0 )

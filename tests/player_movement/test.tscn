@@ -45,7 +45,3 @@ polygon = PoolVector2Array( 192, 192, 768, 192, 768, 256, 192, 256 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 160, 416 )
-movement_speed = 300
-jump_height = 256
-jump_time = 0.5
-fall_gravity_multiplier = 1.35
