@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/player/player.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 56 )
+
+[node name="Player" type="KinematicBody2D"]
+collision_mask = 12
+script = ExtResource( 1 )
+movement_speed = 300
+jump_height = 256
+jump_time = 0.5
+fall_gravity_multiplier = 1.35
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PoolVector2Array( -32, -56, 32, -56, 32, 56, -32, 56 )
+
+[node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="PlatformRayCast" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 64 )
+collision_mask = 8
+
+[node name="Debug" type="Node2D" parent="."]
+
+[node name="Direction" type="Line2D" parent="Debug"]
+points = PoolVector2Array( 40, -24, 72, -24 )
