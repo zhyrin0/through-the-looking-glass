@@ -49,7 +49,8 @@ func do_connect_neighbours(other: Node2D, args: Array) -> void:
 
 
 func draw_waypoint(waypoint: Node2D) -> void:
-	draw_circle(waypoint.position, connection_radius, waypoint_color)
+	if waypoint.visible:
+		draw_circle(waypoint.position, connection_radius, waypoint_color)
 
 
 func on_Enemy_request_path(enemy: Node2D) -> void:
