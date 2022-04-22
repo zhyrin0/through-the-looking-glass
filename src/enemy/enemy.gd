@@ -28,6 +28,14 @@ func _ready() -> void:
 	emit_signal("request_path", self)
 
 
+func _process(_delta: float) -> void:
+	if not waypoints.empty():
+		var x_dir := sign(to_local(waypoints[0]).x)
+		if x_dir == 1.0 and scale.x != 1.0:
+			scale.x = 1.0
+		elif x_dir == -1.0 and scale.x != -1.0:
+			scale.x = -1.0
+
 func _physics_process(delta: float) -> void:
 	var gravity_multiplier := fall_gravity_modifier if velocity.y > 0.0 else 1.0
 	velocity.y += gravity * gravity_multiplier * delta
