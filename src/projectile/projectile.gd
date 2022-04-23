@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
 
-const PLATFORM_COLLISION_BIT := 3
 export(int) var speed: int
 var start_global_pos := Vector2.ZERO
 var direction := Vector2.ZERO
@@ -18,7 +17,6 @@ func init(p_start_global_pos: Vector2, p_direction: Vector2, p_is_strong: bool) 
 	
 	global_position = p_start_global_pos
 	rotation = direction.angle()
-	set_collision_mask_bit(PLATFORM_COLLISION_BIT, not is_strong)
 	var shoot_audio := $ShootAudio as AudioStreamPlayer
 	shoot_audio.pitch_scale = rand_range(0.9, 1.1)
 

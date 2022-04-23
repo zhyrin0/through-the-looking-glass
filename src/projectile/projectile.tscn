@@ -6,7 +6,7 @@
 
 [node name="Projectile" type="KinematicBody2D"]
 collision_layer = 16
-collision_mask = 12
+collision_mask = 4
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
