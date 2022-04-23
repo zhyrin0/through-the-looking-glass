@@ -6,6 +6,7 @@ export(int) var speed: int
 var start_global_pos := Vector2.ZERO
 var direction := Vector2.ZERO
 var is_strong := false
+onready var shatter_audio := $ShatterAudio as AudioStreamPlayer
 onready var delete_timer := $DeleteTimer as Timer
 
 
@@ -30,7 +31,12 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	var velocity := direction * speed * delta
 	if move_and_collide(velocity):
-		queue_free()
+		collision_layer = 0
+		set_process(false)
+		set_physics_process(false)
+		visible = false
+		shatter_audio.play()
+		delete_timer.stop()
 
 
 func _draw() -> void:
@@ -39,6 +45,10 @@ func _draw() -> void:
 		Color(1.0, 1.0, 1.0, delete_timer.time_left / delete_timer.wait_time),
 	]
 	draw_polyline_colors([to_local(start_global_pos), to_local(global_position)], colors)
+
+
+func _on_ShatterAudio_finished() -> void:
+	queue_free()
 
 
 func _on_DeleteTimer_timeout() -> void:
