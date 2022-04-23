@@ -45,6 +45,10 @@ func _physics_process(delta: float) -> void:
 	reset_collision_rules()
 
 
+func hit() -> void:
+	queue_free()
+
+
 func attack() -> void:
 	_attack(Projectile.Owner.ENEMY, player.global_position, false)
 

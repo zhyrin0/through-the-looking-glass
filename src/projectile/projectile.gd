@@ -34,12 +34,15 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	var velocity := direction * speed * delta
-	if move_and_collide(velocity):
+	var collision := move_and_collide(velocity)
+	if collision:
 		# hack: While the projectile is not deleted (playing shatter audio)
 		# it interferes with character movement, so it's teleported away.
 		global_position = Vector2(-1.0, -1.0) * 100.0
 		collision_layer = 0
 		visible = false
+		if collision.collider.has_method("hit"):
+			collision.collider.call("hit")
 		shatter_audio.play()
 		delete_timer.stop()
 		set_process(false)
