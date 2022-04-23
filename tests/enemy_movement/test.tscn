@@ -1,0 +1,143 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/player/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/enemy/enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/enemy/waypoint_navigation.gd" type="Script" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+
+func _init() -> void:
+	randomize()
+"
+
+[node name="Test" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="World" type="Node2D" parent="."]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Ground" type="StaticBody2D" parent="World"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="Polygon2D" type="Polygon2D" parent="World/Ground"]
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+polygon = PoolVector2Array( 0, 640, 1280, 640, 1280, 720, 0, 720 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/Ground"]
+polygon = PoolVector2Array( 0, 640, 1280, 640, 1280, 720, 0, 720 )
+
+[node name="Platform1" type="StaticBody2D" parent="World"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Polygon2D" type="Polygon2D" parent="World/Platform1"]
+color = Color( 0.188235, 0.188235, 0.188235, 1 )
+polygon = PoolVector2Array( 960, 480, 512, 480, 512, 416, 960, 416 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/Platform1"]
+polygon = PoolVector2Array( 512, 416, 960, 416, 960, 480, 512, 480 )
+
+[node name="Platform2" type="StaticBody2D" parent="World"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Polygon2D" type="Polygon2D" parent="World/Platform2"]
+color = Color( 0.25098, 0.25098, 0.25098, 1 )
+polygon = PoolVector2Array( 128, 192, 704, 192, 704, 256, 128, 256 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/Platform2"]
+polygon = PoolVector2Array( 128, 192, 704, 192, 704, 256, 128, 256 )
+
+[node name="WaypointNavigation" type="Node2D" parent="."]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+connection_radius = 275.0
+waypoint_color = Color( 0, 0.501961, 1, 0.0627451 )
+
+[node name="Waypoint1" type="Position2D" parent="WaypointNavigation"]
+position = Vector2( 1088, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint2" type="Position2D" parent="WaypointNavigation"]
+position = Vector2( 928, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint3" type="Position2D" parent="WaypointNavigation"]
+position = Vector2( 896, 360 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint4" type="Position2D" parent="WaypointNavigation"]
+position = Vector2( 768, 360 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint5" type="Position2D" parent="WaypointNavigation"]
+position = Vector2( 544, 360 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint6" type="Position2D" parent="WaypointNavigation"]
+position = Vector2( 672, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint7" type="Position2D" parent="WaypointNavigation"]
+position = Vector2( 400, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint8" type="Position2D" parent="WaypointNavigation"]
+position = Vector2( 640, 136 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint9" type="Position2D" parent="WaypointNavigation"]
+position = Vector2( 376, 136 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint11" type="Position2D" parent="WaypointNavigation"]
+position = Vector2( 160, 136 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint10" type="Position2D" parent="WaypointNavigation"]
+position = Vector2( 136, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Enemy" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1184, 584 )
+player_path = NodePath("../Player")
+
+[node name="AttackCooldown" parent="Enemy" index="6"]
+wait_time = 1.0
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 224, 520 )
+
+[connection signal="request_path" from="Enemy" to="WaypointNavigation" method="on_Enemy_request_path"]
+
+[editable path="Enemy"]
