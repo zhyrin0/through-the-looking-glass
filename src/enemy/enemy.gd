@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+const Projectile := preload("res://src/projectile/projectile.gd")
+const ProjectileScene := preload("res://src/projectile/projectile.tscn")
 const Debug := preload("debug.gd")
 
 
@@ -23,6 +25,7 @@ onready var player := get_node_or_null(player_path) as Node2D
 onready var jump_raycast := $JumpRayCast as RayCast2D
 onready var fall_raycast := $FallRayCast as RayCast2D
 onready var direction_pivot := $DirectionPivot as Node2D
+onready var projectile_pos := $DirectionPivot/ProjectilePosition as Node2D
 onready var movement_cooldown := $MovementCooldown as Timer
 onready var debug := $Debug as Debug
 
@@ -47,6 +50,11 @@ func _physics_process(delta: float) -> void:
 			if waypoints.empty():
 				velocity.x = 0.0
 				movement_cooldown.start()
+				var projectile := ProjectileScene.instance() as Projectile
+				projectile.init(projectile_pos.global_position,
+						(player.global_position - projectile_pos.global_position).normalized(),
+						true)
+				get_parent().add_child(projectile)
 		
 		if is_on_floor() and to_waypoint.y < -WAYPOINT_EPSILON and jump_raycast.is_colliding():
 			set_collision_mask_bit(PLATFORM_COLLISION_BIT, false)
