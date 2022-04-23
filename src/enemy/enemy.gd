@@ -13,13 +13,16 @@ export(int) var movement_speed: int
 export(int) var jump_height: int setget set_jump_height
 export(float) var jump_time: float = 1.0 setget set_jump_time
 export(float) var fall_gravity_modifier: float = 1.0
+export(NodePath) var player_path: NodePath
 var jump_velocity: float
 var gravity: float
 var velocity := Vector2.ZERO
 var fallthrough_platform: Node = null
 var waypoints := PoolVector2Array()
+onready var player := get_node_or_null(player_path) as Node2D
 onready var jump_raycast := $JumpRayCast as RayCast2D
 onready var fall_raycast := $FallRayCast as RayCast2D
+onready var direction_pivot := $DirectionPivot as Node2D
 onready var movement_cooldown := $MovementCooldown as Timer
 onready var debug := $Debug as Debug
 
@@ -27,14 +30,6 @@ onready var debug := $Debug as Debug
 func _ready() -> void:
 	emit_signal("request_path", self)
 
-
-func _process(_delta: float) -> void:
-	if not waypoints.empty():
-		var x_dir := sign(to_local(waypoints[0]).x)
-		if x_dir == 1.0 and scale.x != 1.0:
-			scale.x = 1.0
-		elif x_dir == -1.0 and scale.x != -1.0:
-			scale.x = -1.0
 
 func _physics_process(delta: float) -> void:
 	var gravity_multiplier := fall_gravity_modifier if velocity.y > 0.0 else 1.0
@@ -48,6 +43,7 @@ func _physics_process(delta: float) -> void:
 		if distance_sq <= WAYPOINT_EPSILON_SQ:
 			waypoints.remove(0)
 			debug.waypoints.remove(0)
+			set_facing_direction()
 			if waypoints.empty():
 				velocity.x = 0.0
 				movement_cooldown.start()
@@ -71,6 +67,13 @@ func _physics_process(delta: float) -> void:
 func set_path(path: PoolVector2Array) -> void:
 	waypoints = path
 	debug.waypoints = waypoints
+
+
+func set_facing_direction() -> void:
+	var goal := player.global_position if waypoints.empty() else waypoints[0]
+	var to := goal - global_position
+	direction_pivot.scale.x = sign(to.x)
+	debug.scale.x = sign(to.x)
 
 
 func set_jump_height(new_value: int) -> void:

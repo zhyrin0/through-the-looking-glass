@@ -5,8 +5,7 @@ var waypoints := PoolVector2Array()
 
 
 func _process(_delta: float) -> void:
-	if not waypoints.empty():
-		update()
+	update()
 
 
 func _draw() -> void:

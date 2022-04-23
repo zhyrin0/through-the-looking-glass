@@ -35,7 +35,9 @@ enabled = true
 cast_to = Vector2( 0, 64 )
 collision_mask = 8
 
-[node name="ProjectilePosition" type="Position2D" parent="."]
+[node name="DirectionPivot" type="Node2D" parent="."]
+
+[node name="ProjectilePosition" type="Position2D" parent="DirectionPivot"]
 position = Vector2( 56, 0 )
 __meta__ = {
 "_gizmo_extents_": 25.0
