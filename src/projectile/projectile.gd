@@ -1,6 +1,11 @@
 extends KinematicBody2D
 
 
+enum Owner {
+	PLAYER = 0,
+	ENEMY = 1,
+}
+
 export(int) var speed: int
 var start_global_pos := Vector2.ZERO
 var direction := Vector2.ZERO
@@ -9,7 +14,7 @@ onready var shatter_audio := $ShatterAudio as AudioStreamPlayer
 onready var delete_timer := $DeleteTimer as Timer
 
 
-func init(p_start_global_pos: Vector2, p_direction: Vector2, p_is_strong: bool) -> void:
+func init(p_owner: int, p_start_global_pos: Vector2, p_direction: Vector2, p_is_strong: bool) -> void:
 	start_global_pos = p_start_global_pos
 	direction = p_direction
 	is_strong = p_is_strong
@@ -17,6 +22,7 @@ func init(p_start_global_pos: Vector2, p_direction: Vector2, p_is_strong: bool) 
 	
 	global_position = p_start_global_pos
 	rotation = direction.angle()
+	set_collision_mask_bit(1 - p_owner, true)
 	var shoot_audio := $ShootAudio as AudioStreamPlayer
 	shoot_audio.pitch_scale = rand_range(0.9, 1.1)
 

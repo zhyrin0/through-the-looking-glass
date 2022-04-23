@@ -52,9 +52,9 @@ func _physics_process(delta: float) -> void:
 				velocity.x = 0.0
 				movement_cooldown.start()
 				var projectile := ProjectileScene.instance() as Projectile
-				projectile.init(projectile_pos.global_position,
+				projectile.init(Projectile.Owner.ENEMY, projectile_pos.global_position,
 						(player.global_position - projectile_pos.global_position).normalized(),
-						true)
+						false)
 				get_parent().add_child(projectile)
 				attack_cooldown.start()
 		
@@ -109,7 +109,7 @@ func _on_AttackCooldown_timeout() -> void:
 	if not sign(global_position.direction_to(player.global_position).x) == direction_pivot.scale.x:
 		return
 	var projectile := ProjectileScene.instance() as Projectile
-	projectile.init(projectile_pos.global_position,
+	projectile.init(Projectile.Owner.ENEMY, projectile_pos.global_position,
 			(player.global_position - projectile_pos.global_position).normalized(),
 			false)
 	get_parent().add_child(projectile)

@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 			charge_audio_triggered = true
 	if can_attack and Input.is_action_just_released("attack"):
 		var projectile := ProjectileScene.instance() as Projectile
-		projectile.init(projectile_pos.global_position,
+		projectile.init(Projectile.Owner.PLAYER, projectile_pos.global_position,
 				(get_global_mouse_position() - projectile_pos.global_position).normalized(),
 				attack_charge >= strong_charge)
 		get_parent().add_child(projectile)
