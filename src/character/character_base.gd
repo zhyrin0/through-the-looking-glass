@@ -41,6 +41,10 @@ func hit() -> void:
 	assert(false, "Virtual method.")
 
 
+func attack() -> void:
+	assert(false, "Virtual method.")
+
+
 func _attack(p_owner: int, target_pos: Vector2, is_strong: bool) -> void:
 	var projectile := ProjectileScene.instance() as Projectile
 	projectile.init(p_owner, projectile_pos.global_position,

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/character/player/player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/enemy/enemy.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/enemy/waypoint_navigation.gd" type="Script" id=3]
+[ext_resource path="res://src/character/enemy/enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/character/enemy/waypoint_navigation.gd" type="Script" id=3]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
@@ -132,12 +132,7 @@ __meta__ = {
 position = Vector2( 1184, 584 )
 player_path = NodePath("../Player")
 
-[node name="AttackCooldown" parent="Enemy" index="6"]
-wait_time = 1.0
-
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 96, 392 )
 
 [connection signal="request_path" from="Enemy" to="WaypointNavigation" method="on_Enemy_request_path"]
-
-[editable path="Enemy"]

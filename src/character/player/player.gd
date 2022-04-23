@@ -17,8 +17,7 @@ func _process(delta: float) -> void:
 				charge_audio_triggered = true
 				charge_audio.play()
 		elif Input.is_action_just_released("attack"):
-			_attack(Projectile.Owner.PLAYER, get_global_mouse_position(),
-					attack_charge >= strong_charge)
+			attack()
 			attack_cooldown.start()
 			attack_charge = 0.0
 			charge_audio_triggered = false
@@ -39,3 +38,7 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	reset_collision_rules()
+
+
+func attack() -> void:
+	_attack(Projectile.Owner.PLAYER, get_global_mouse_position(), attack_charge >= strong_charge)
