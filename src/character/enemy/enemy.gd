@@ -2,6 +2,7 @@ extends "../character_base.gd"
 
 
 signal request_path(p_self)
+signal hit
 
 const WAYPOINT_DEADZONE := 16.0
 const WAYPOINT_EPSILON := WAYPOINT_DEADZONE / 2.0
@@ -45,7 +46,8 @@ func _physics_process(delta: float) -> void:
 	reset_collision_rules()
 
 
-func hit() -> void:
+func on_hit() -> void:
+	emit_signal("hit")
 	queue_free()
 
 

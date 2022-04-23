@@ -7,6 +7,7 @@ export(int) var max_health: int
 export(float) var strong_charge: float
 var attack_charge := 0.0
 var charge_audio_triggered := false
+var score := 0
 onready var health := max_health
 onready var shards := $Shards as Node
 onready var charge_audio := $ChargeAudio as AudioStreamPlayer
@@ -45,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	reset_collision_rules()
 
 
-func hit() -> void:
+func on_hit() -> void:
 	health -= 1
 	if shards.get_child_count() > 0:
 		var shard := shards.get_child(0) as Shard
@@ -56,3 +57,7 @@ func hit() -> void:
 
 func attack() -> void:
 	_attack(Projectile.Owner.PLAYER, get_global_mouse_position(), attack_charge >= strong_charge)
+
+
+func _on_Enemy_hit() -> void:
+	score += 1

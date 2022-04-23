@@ -37,7 +37,7 @@ func reset_collision_rules() -> void:
 		fallthrough_platform = null
 
 
-func hit() -> void:
+func on_hit() -> void:
 	assert(false, "Virtual method.")
 
 

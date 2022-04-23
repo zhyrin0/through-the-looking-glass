@@ -135,4 +135,5 @@ player_path = NodePath("../Player")
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 96, 392 )
 
+[connection signal="hit" from="Enemy" to="Player" method="_on_Enemy_hit"]
 [connection signal="request_path" from="Enemy" to="WaypointNavigation" method="on_Enemy_request_path"]

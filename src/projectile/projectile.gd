@@ -41,8 +41,8 @@ func _physics_process(delta: float) -> void:
 		global_position = Vector2(-1.0, -1.0) * 100.0
 		collision_layer = 0
 		visible = false
-		if collision.collider.has_method("hit"):
-			collision.collider.call("hit")
+		if collision.collider.has_method("on_hit"):
+			collision.collider.call("on_hit")
 		shatter_audio.play()
 		delete_timer.stop()
 		set_process(false)
