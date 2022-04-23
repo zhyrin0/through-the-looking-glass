@@ -46,6 +46,10 @@ __meta__ = {
 [node name="MovementCooldown" type="Timer" parent="."]
 one_shot = true
 
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [node name="Debug" type="Node2D" parent="."]
 script = ExtResource( 2 )
 
@@ -53,3 +57,4 @@ script = ExtResource( 2 )
 points = PoolVector2Array( 40, -24, 72, -24 )
 
 [connection signal="timeout" from="MovementCooldown" to="." method="_on_MovementCooldown_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_AttackCooldown_timeout"]

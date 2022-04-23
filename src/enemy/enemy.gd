@@ -27,6 +27,7 @@ onready var fall_raycast := $FallRayCast as RayCast2D
 onready var direction_pivot := $DirectionPivot as Node2D
 onready var projectile_pos := $DirectionPivot/ProjectilePosition as Node2D
 onready var movement_cooldown := $MovementCooldown as Timer
+onready var attack_cooldown := $AttackCooldown as Timer
 onready var debug := $Debug as Debug
 
 
@@ -55,6 +56,7 @@ func _physics_process(delta: float) -> void:
 						(player.global_position - projectile_pos.global_position).normalized(),
 						true)
 				get_parent().add_child(projectile)
+				attack_cooldown.start()
 		
 		if is_on_floor() and to_waypoint.y < -WAYPOINT_EPSILON and jump_raycast.is_colliding():
 			set_collision_mask_bit(PLATFORM_COLLISION_BIT, false)
@@ -101,3 +103,13 @@ func _set_physics_values() -> void:
 
 func _on_MovementCooldown_timeout() -> void:
 	emit_signal("request_path", self)
+
+
+func _on_AttackCooldown_timeout() -> void:
+	if not sign(global_position.direction_to(player.global_position).x) == direction_pivot.scale.x:
+		return
+	var projectile := ProjectileScene.instance() as Projectile
+	projectile.init(projectile_pos.global_position,
+			(player.global_position - projectile_pos.global_position).normalized(),
+			false)
+	get_parent().add_child(projectile)

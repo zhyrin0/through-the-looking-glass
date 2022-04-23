@@ -132,6 +132,9 @@ __meta__ = {
 position = Vector2( 1184, 584 )
 player_path = NodePath("../Player")
 
+[node name="AttackCooldown" parent="Enemy" index="6"]
+wait_time = 1.0
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 224, 520 )
 
