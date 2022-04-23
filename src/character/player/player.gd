@@ -1,9 +1,14 @@
 extends "../character_base.gd"
 
+const Shard := preload("shard/shard.gd")
 
+
+export(int) var max_health: int
 export(float) var strong_charge: float
 var attack_charge := 0.0
 var charge_audio_triggered := false
+onready var health := max_health
+onready var shards := $Shards as Node
 onready var charge_audio := $ChargeAudio as AudioStreamPlayer
 onready var attack_cooldown := $AttackCooldown as Timer
 
@@ -38,6 +43,15 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	reset_collision_rules()
+
+
+func hit() -> void:
+	health -= 1
+	if shards.get_child_count() > 0:
+		var shard := shards.get_child(0) as Shard
+		shard.break_off(shard.position.normalized())
+	if health == 0:
+		queue_free()
 
 
 func attack() -> void:

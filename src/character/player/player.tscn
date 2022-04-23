@@ -1,18 +1,47 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/character/character_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/character/player/player.gd" type="Script" id=2]
 [ext_resource path="res://src/character/player/charge.wav" type="AudioStream" id=3]
+[ext_resource path="res://src/character/player/shard/shard.tscn" type="PackedScene" id=4]
 
 [node name="Player" instance=ExtResource( 1 )]
 collision_layer = 1
 script = ExtResource( 2 )
 movement_speed = 300
+max_health = 3
 strong_charge = 0.5
 
-[node name="ChargeAudio" type="AudioStreamPlayer" parent="." index="4"]
+[node name="Polygon2D" parent="." index="0"]
+modulate = Color( 1, 1, 1, 0.501961 )
+
+[node name="Shards" type="Node2D" parent="." index="1"]
+
+[node name="Shard" parent="Shards" index="0" instance=ExtResource( 4 )]
+position = Vector2( 0, -24 )
+
+[node name="Polygon2D" parent="Shards/Shard" index="0"]
+polygon = PoolVector2Array( 0, 24, 32, 8, 32, -32, -32, -32, -32, 8 )
+
+[node name="Shard2" parent="Shards" index="1" instance=ExtResource( 4 )]
+position = Vector2( 16, 32 )
+
+[node name="Polygon2D" parent="Shards/Shard2" index="0"]
+polygon = PoolVector2Array( -16, -32, 16, -48, 16, 24, -16, 24 )
+
+[node name="Shard3" parent="Shards" index="2" instance=ExtResource( 4 )]
+position = Vector2( -16, 32 )
+
+[node name="Polygon2D" parent="Shards/Shard3" index="0"]
+polygon = PoolVector2Array( 16, -32, 16, 24, -16, 24, -16, -48 )
+
+[node name="ChargeAudio" type="AudioStreamPlayer" parent="." index="5"]
 stream = ExtResource( 3 )
 
-[node name="AttackCooldown" type="Timer" parent="." index="5"]
+[node name="AttackCooldown" type="Timer" parent="." index="6"]
 wait_time = 0.5
 one_shot = true
+
+[editable path="Shards/Shard"]
+[editable path="Shards/Shard2"]
+[editable path="Shards/Shard3"]
