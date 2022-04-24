@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/character/character_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/character/enemy/enemy.gd" type="Script" id=2]
+
+[node name="Enemy" instance=ExtResource( 1 )]
+collision_layer = 2
+script = ExtResource( 2 )
+movement_speed = 150
+
+[node name="Polygon2D" parent="." index="0"]
+color = Color( 0.752941, 0, 0, 1 )
+
+[node name="JumpRayCast" type="RayCast2D" parent="." index="2"]
+enabled = true
+cast_to = Vector2( 0, -128 )
+collision_mask = 8
+
+[node name="MovementCooldown" type="Timer" parent="." index="5"]
+one_shot = true
+
+[node name="AttackCooldown" type="Timer" parent="." index="6"]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="MovementCooldown" to="." method="_on_MovementCooldown_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_AttackCooldown_timeout"]

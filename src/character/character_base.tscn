@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/character/character_base.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 56 )
+
+[node name="CharacterBase" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 12
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+jump_height = 256
+jump_time = 0.5
+fall_gravity_multiplier = 1.35
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PoolVector2Array( -32, -56, 32, -56, 32, 56, -32, 56 )
+
+[node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="FallRayCast" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 64 )
+collision_mask = 8
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="ProjectilePosition" type="Position2D" parent="Pivot"]
+position = Vector2( 56, 0 )

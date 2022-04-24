@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/player/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/character/player/player.tscn" type="PackedScene" id=1]
 
 [node name="Test" type="Node2D"]
 
@@ -44,4 +44,4 @@ polygon = PoolVector2Array( 192, 256, 768, 256, 768, 192, 192, 192 )
 polygon = PoolVector2Array( 192, 192, 768, 192, 768, 256, 192, 256 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 160, 416 )
+position = Vector2( 96, 392 )
