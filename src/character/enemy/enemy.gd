@@ -52,7 +52,16 @@ func on_hit() -> void:
 
 
 func attack() -> void:
+	if not is_instance_valid(player):
+		disable()
+		return
 	_attack(Projectile.Owner.ENEMY, player.global_position, false)
+
+
+func disable() -> void:
+	set_physics_process(false)
+	movement_cooldown.stop()
+	attack_cooldown.stop()
 
 
 func set_path(path: PoolVector2Array) -> void:
@@ -60,6 +69,9 @@ func set_path(path: PoolVector2Array) -> void:
 
 
 func set_facing_direction() -> void:
+	if not is_instance_valid(player):
+		disable()
+		return
 	var target := player.global_position if waypoints.empty() else waypoints[0]
 	var target_vector := target - global_position
 	pivot.scale.x = sign(target_vector.x)
@@ -70,5 +82,8 @@ func _on_MovementCooldown_timeout() -> void:
 
 
 func _on_AttackCooldown_timeout() -> void:
+	if not is_instance_valid(player):
+		disable()
+		return
 	if pivot.scale.x == sign(to_local(player.global_position).x):
 		attack()
