@@ -50,7 +50,7 @@ func on_hit() -> void:
 	health -= 1
 	if shards.get_child_count() > 0:
 		var shard := shards.get_child(0) as Shard
-		shard.break_off(shard.position.normalized())
+		shard.break_off()
 	if health == 0:
 		queue_free()
 
