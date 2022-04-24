@@ -29,6 +29,12 @@ func _ready() -> void:
 	set_spawn_cooldown()
 
 
+func get_global_extents() -> Rect2:
+	var upper_left := $Extents/UpperLeft as Node2D
+	var lower_right := $Extents/LowerRight as Node2D
+	return Rect2(upper_left.global_position, lower_right.position - upper_left.position)
+
+
 func start() -> void:
 	enemies_to_spawn = waves[current_wave]
 	left_barrier.set_collision_layer_bit(BARRIER_COLLISION_BIT, true)
