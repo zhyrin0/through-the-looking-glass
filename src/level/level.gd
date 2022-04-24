@@ -41,11 +41,6 @@ func start() -> void:
 	spawn_cooldown.start()
 
 
-func finish() -> void:
-	right_barrier.set_collision_layer_bit(BARRIER_COLLISION_BIT, false)
-	emit_signal("finished")
-
-
 func spawn() -> void:
 	var enemy := EnemyScene.instance() as Enemy
 	var spawnpoint := spawnpoints.get_child(randi() % spawnpoints.get_child_count()) as Node2D
@@ -53,6 +48,15 @@ func spawn() -> void:
 	enemy.connect("request_path", navigation, "on_Enemy_request_path")
 	enemy.connect("hit", self, "_on_Enemy_hit")
 	enemies.add_child(enemy)
+
+
+func cleared() -> void:
+	finish()
+
+
+func finish() -> void:
+	right_barrier.set_collision_layer_bit(BARRIER_COLLISION_BIT, false)
+	emit_signal("finished")
 
 
 func set_spawn_cooldown() -> void:
@@ -88,7 +92,7 @@ func _on_SpawnCooldown_timeout() -> void:
 func _on_WaveCooldown_timeout() -> void:
 	current_wave += 1
 	if current_wave == waves.size():
-		finish()
+		cleared()
 		return
 	enemies_killed = 0
 	enemies_to_spawn = waves[current_wave]
