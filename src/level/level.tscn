@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/character/enemy/waypoint_navigation.gd" type="Script" id=1]
 [ext_resource path="res://src/level/level.gd" type="Script" id=2]
@@ -8,6 +8,9 @@ extents = Vector2( 8, 456 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 456 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 32, 456 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 2 )
@@ -31,9 +34,10 @@ __meta__ = {
 }
 
 [node name="LeftBarrier" type="StaticBody2D" parent="."]
-collision_layer = 32
+collision_layer = 0
 collision_mask = 0
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
@@ -45,12 +49,24 @@ shape = SubResource( 1 )
 collision_layer = 32
 collision_mask = 0
 __meta__ = {
+"_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightBarrier"]
 position = Vector2( 1272, 264 )
 shape = SubResource( 2 )
+
+[node name="EnterArea" type="Area2D" parent="."]
+collision_layer = 0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnterArea"]
+position = Vector2( 112, 264 )
+shape = SubResource( 3 )
 
 [node name="Spawnpoints" type="Node2D" parent="."]
 __meta__ = {
@@ -74,5 +90,6 @@ __meta__ = {
 wait_time = 3.0
 one_shot = true
 
+[connection signal="body_entered" from="EnterArea" to="." method="_on_EnterArea_body_entered" flags=6]
 [connection signal="timeout" from="SpawnCooldown" to="." method="_on_SpawnCooldown_timeout"]
 [connection signal="timeout" from="WaveCooldown" to="." method="_on_WaveCooldown_timeout"]

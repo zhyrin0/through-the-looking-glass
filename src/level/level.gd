@@ -6,6 +6,7 @@ const Player := preload("res://src/character/player/player.gd")
 const WaypointNavigation := preload("res://src/character/enemy/waypoint_navigation.gd")
 
 
+signal entered
 signal finished
 
 const BARRIER_COLLISION_BIT := 5
@@ -37,8 +38,6 @@ func get_global_extents() -> Rect2:
 
 func start() -> void:
 	enemies_to_spawn = waves[current_wave]
-	left_barrier.set_collision_layer_bit(BARRIER_COLLISION_BIT, true)
-	right_barrier.set_collision_layer_bit(BARRIER_COLLISION_BIT, true)
 	spawn_cooldown.start()
 
 
@@ -58,6 +57,17 @@ func spawn() -> void:
 
 func set_spawn_cooldown() -> void:
 	spawn_cooldown.wait_time = rand_range(spawn_cooldown_range.x, spawn_cooldown_range.y)
+
+
+func _on_EnterArea_body_entered(_body: Node) -> void:
+	left_barrier.set_collision_layer_bit(BARRIER_COLLISION_BIT, true)
+	var enter_area := $EnterArea as Area2D
+	enter_area.set_deferred("monitoring", false)
+	enter_area.set_deferred("monitorable", false)
+	emit_signal("entered")
+	yield(get_tree().create_timer(wave_cooldown.wait_time), "timeout")
+	
+	start()
 
 
 func _on_Enemy_hit() -> void:
