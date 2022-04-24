@@ -4,19 +4,19 @@
 [ext_resource path="res://src/projectile/shoot.wav" type="AudioStream" id=2]
 [ext_resource path="res://src/projectile/shatter.wav" type="AudioStream" id=3]
 
-[node name="Projectile" type="KinematicBody2D"]
-collision_layer = 16
-collision_mask = 4
+[node name="Projectile" type="Polygon2D"]
+polygon = PoolVector2Array( -16, 0, 0, -8, 16, 0, 0, 8 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 speed = 1500
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PoolVector2Array( -16, 0, 0, -8, 16, 0, 0, 8 )
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PoolVector2Array( -4, 0, 0, -2, 4, 0, 0, 2 )
 
 [node name="ShootAudio" type="AudioStreamPlayer" parent="."]
@@ -31,5 +31,6 @@ wait_time = 1.5
 one_shot = true
 autostart = true
 
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="finished" from="ShatterAudio" to="." method="_on_ShatterAudio_finished"]
 [connection signal="timeout" from="DeleteTimer" to="." method="_on_DeleteTimer_timeout"]
