@@ -15,6 +15,13 @@ onready var movement_cooldown := $MovementCooldown as Timer
 onready var attack_cooldown := $AttackCooldown as Timer
 
 
+func init(p_player: Node2D, p_global_pos: Vector2) -> void:
+	yield(self, "ready")
+	
+	player = p_player
+	global_position = p_global_pos
+
+
 func _ready() -> void:
 	emit_signal("request_path", self)
 

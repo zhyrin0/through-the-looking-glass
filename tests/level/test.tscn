@@ -1,0 +1,143 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/level/level_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/character/player/player.tscn" type="PackedScene" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node2D
+
+const LevelBase := preload(\"res://src/level/level_base.gd\")
+
+
+onready var level := $Level as LevelBase
+
+
+func _init() -> void:
+	randomize()
+
+
+func _on_Level_finished() -> void:
+	print(\"finished\")
+"
+
+[node name="Test" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="World" type="Node2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Ground" type="StaticBody2D" parent="World"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="Polygon2D" type="Polygon2D" parent="World/Ground"]
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+polygon = PoolVector2Array( -96, 640, 1376, 640, 1376, 720, -96, 720 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/Ground"]
+polygon = PoolVector2Array( -96, 640, 1376, 640, 1376, 720, -96, 720 )
+
+[node name="Platform1" type="StaticBody2D" parent="World"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Polygon2D" type="Polygon2D" parent="World/Platform1"]
+color = Color( 0.188235, 0.188235, 0.188235, 1 )
+polygon = PoolVector2Array( -96, 416, 448, 416, 448, 480, -96, 480 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/Platform1"]
+polygon = PoolVector2Array( -96, 416, 448, 416, 448, 480, -96, 480 )
+
+[node name="Platform2" type="StaticBody2D" parent="World"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Polygon2D" type="Polygon2D" parent="World/Platform2"]
+color = Color( 0.188235, 0.188235, 0.188235, 1 )
+polygon = PoolVector2Array( 832, 416, 1376, 416, 1376, 480, 832, 480 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/Platform2"]
+polygon = PoolVector2Array( 832, 416, 1376, 416, 1376, 480, 832, 480 )
+
+[node name="Platform3" type="StaticBody2D" parent="World"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Polygon2D" type="Polygon2D" parent="World/Platform3"]
+color = Color( 0.25098, 0.25098, 0.25098, 1 )
+polygon = PoolVector2Array( 256, 192, 1024, 192, 1024, 256, 256, 256 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/Platform3"]
+polygon = PoolVector2Array( 256, 192, 1024, 192, 1024, 256, 256, 256 )
+
+[node name="Level" parent="." instance=ExtResource( 1 )]
+player_path = NodePath("../Player")
+waves = PoolIntArray( 2, 3, 5 )
+
+[node name="Spawnpoint1" type="Position2D" parent="Level/Spawnpoints" index="0"]
+position = Vector2( -48, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Spawnpoint2" type="Position2D" parent="Level/Spawnpoints" index="1"]
+position = Vector2( -48, 360 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Spawnpoint3" type="Position2D" parent="Level/Spawnpoints" index="2"]
+position = Vector2( 1328, 360 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Spawnpoint4" type="Position2D" parent="Level/Spawnpoints" index="3"]
+position = Vector2( 1328, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="WaypointNavigation" parent="Level" index="5"]
+visible = false
+connection_radius = 400.0
+
+[node name="Waypoint1" type="Position2D" parent="Level/WaypointNavigation" index="0"]
+position = Vector2( 96, 360 )
+
+[node name="Waypoint2" type="Position2D" parent="Level/WaypointNavigation" index="1"]
+position = Vector2( 416, 360 )
+
+[node name="Waypoint3" type="Position2D" parent="Level/WaypointNavigation" index="2"]
+position = Vector2( 256, 584 )
+
+[node name="Waypoint4" type="Position2D" parent="Level/WaypointNavigation" index="3"]
+position = Vector2( 864, 360 )
+
+[node name="Waypoint5" type="Position2D" parent="Level/WaypointNavigation" index="4"]
+position = Vector2( 1184, 360 )
+
+[node name="Waypoint6" type="Position2D" parent="Level/WaypointNavigation" index="5"]
+position = Vector2( 1024, 584 )
+
+[node name="Waypoint7" type="Position2D" parent="Level/WaypointNavigation" index="6"]
+position = Vector2( 640, 584 )
+
+[node name="Waypoint8" type="Position2D" parent="Level/WaypointNavigation" index="7"]
+position = Vector2( 288, 136 )
+
+[node name="Waypoint9" type="Position2D" parent="Level/WaypointNavigation" index="8"]
+position = Vector2( 640, 136 )
+
+[node name="Waypoint10" type="Position2D" parent="Level/WaypointNavigation" index="9"]
+position = Vector2( 992, 136 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 32, 584 )
+max_health = 50
+
+[connection signal="finished" from="Level" to="." method="_on_Level_finished"]
+
+[editable path="Level"]
