@@ -9,6 +9,7 @@ const WAYPOINT_EPSILON := WAYPOINT_DEADZONE / 2.0
 const WAYPOINT_EPSILON_SQ := WAYPOINT_DEADZONE*WAYPOINT_DEADZONE / 2.0
 export(NodePath) var player_path: NodePath
 var waypoints := PoolVector2Array()
+var lock_animation := false
 onready var player := get_node_or_null(player_path) as Node2D
 onready var jump_raycast := $JumpRayCast as RayCast2D
 onready var movement_cooldown := $MovementCooldown as Timer
@@ -18,12 +19,27 @@ onready var attack_cooldown := $AttackCooldown as Timer
 func init(p_player: Node2D, p_global_pos: Vector2) -> void:
 	yield(self, "ready")
 	
-	player = p_player
 	global_position = p_global_pos
+	player = p_player
 
 
 func _ready() -> void:
+	animation_player.play("idle")
 	emit_signal("request_path", self)
+
+
+func _process(_delta: float) -> void:
+	if lock_animation:
+		return
+	var anim := animation_player.current_animation
+	if velocity.y < 0.0 and anim != "jump":
+		animation_player.play("jump")
+	elif velocity.y > 0.0 and anim != "fall":
+		animation_player.play("fall")
+	elif velocity.x != 0.0 and anim != "run" and is_on_floor():
+		animation_player.play("run")
+	elif velocity.x == 0.0 and anim == "idle" and is_on_floor():
+		animation_player.play("idle")
 
 
 func _physics_process(delta: float) -> void:
@@ -39,7 +55,8 @@ func _physics_process(delta: float) -> void:
 			waypoints.remove(0)
 			set_facing_direction()
 			if waypoints.empty():
-				attack()
+				lock_animation = true
+				animation_player.play("attack_release")
 				velocity.x = 0.0
 				movement_cooldown.start()
 				attack_cooldown.start()
@@ -73,6 +90,7 @@ func disable() -> void:
 
 func set_path(path: PoolVector2Array) -> void:
 	waypoints = path
+	set_facing_direction()
 
 
 func set_facing_direction() -> void:
@@ -82,6 +100,11 @@ func set_facing_direction() -> void:
 	var target := player.global_position if waypoints.empty() else waypoints[0]
 	var target_vector := target - global_position
 	pivot.scale.x = sign(target_vector.x)
+
+
+func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	if anim_name == "attack_release":
+		lock_animation = false
 
 
 func _on_MovementCooldown_timeout() -> void:
