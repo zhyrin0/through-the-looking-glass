@@ -21,11 +21,11 @@ func init(p_player: Node2D, p_global_pos: Vector2) -> void:
 	
 	global_position = p_global_pos
 	player = p_player
+	emit_signal("request_path", self)
 
 
 func _ready() -> void:
 	animation_player.play("idle")
-	emit_signal("request_path", self)
 
 
 func _process(_delta: float) -> void:
