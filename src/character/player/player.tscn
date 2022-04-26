@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/character/character_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/character/player/player.gd" type="Script" id=2]
-[ext_resource path="res://src/character/player/charge.wav" type="AudioStream" id=3]
+[ext_resource path="res://src/character/player/assets/charge.wav" type="AudioStream" id=3]
 [ext_resource path="res://src/character/player/assets/player.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]

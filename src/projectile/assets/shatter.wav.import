@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/charge.wav-c7e8e747e98ffd8c8deccd448eca85cd.sample"
+path="res://.import/shatter.wav-afe16c821824a69048b3ac67d081e100.sample"
 
 [deps]
 
-source_file="res://src/character/player/charge.wav"
-dest_files=[ "res://.import/charge.wav-c7e8e747e98ffd8c8deccd448eca85cd.sample" ]
+source_file="res://src/projectile/assets/shatter.wav"
+dest_files=[ "res://.import/shatter.wav-afe16c821824a69048b3ac67d081e100.sample" ]
 
 [params]
 
