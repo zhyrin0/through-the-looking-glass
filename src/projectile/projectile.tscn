@@ -1,9 +1,30 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/projectile/projectile.gd" type="Script" id=1]
 [ext_resource path="res://src/projectile/assets/shoot.wav" type="AudioStream" id=2]
 [ext_resource path="res://src/projectile/assets/shatter.wav" type="AudioStream" id=3]
 [ext_resource path="res://src/projectile/assets/projectile.png" type="Texture" id=4]
+[ext_resource path="res://src/projectile/assets/projectile_shatter.png" type="Texture" id=5]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_align_y = true
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 150, 0 )
+initial_velocity = 150.0
+initial_velocity_random = 0.25
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+scale_random = 0.1
+color_ramp = SubResource( 2 )
 
 [node name="Projectile" type="Sprite"]
 texture = ExtResource( 4 )
@@ -19,6 +40,17 @@ collision_mask = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PoolVector2Array( -4, 0, 0, -2, 4, 0, 0, 2 )
+
+[node name="ShatterParticles" type="Particles2D" parent="."]
+show_behind_parent = true
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+local_coords = false
+process_material = SubResource( 3 )
+texture = ExtResource( 5 )
 
 [node name="ShootAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
