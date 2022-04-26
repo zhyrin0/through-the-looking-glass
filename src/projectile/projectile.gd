@@ -1,4 +1,4 @@
-extends Polygon2D
+extends Sprite
 
 
 enum Owner {
