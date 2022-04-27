@@ -32,9 +32,9 @@ func _process(_delta: float) -> void:
 	if lock_animation:
 		return
 	var anim := animation_player.current_animation
-	if velocity.y < 0.0 and anim != "jump":
+	if velocity.y < 0.0 and anim != "jump" and not is_on_floor():
 		animation_player.play("jump")
-	elif velocity.y > 0.0 and anim != "fall":
+	elif velocity.y > 0.0 and anim != "fall" and not is_on_floor():
 		animation_player.play("fall")
 	elif velocity.x != 0.0 and anim != "run" and is_on_floor():
 		animation_player.play("run")
