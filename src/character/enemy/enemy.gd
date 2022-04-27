@@ -11,6 +11,8 @@ export(NodePath) var player_path: NodePath
 var waypoints := PoolVector2Array()
 var lock_animation := false
 onready var player := get_node_or_null(player_path) as Node2D
+onready var sprite := $Pivot/Sprite as Sprite
+onready var particles := $Particles2D as Particles2D
 onready var jump_raycast := $JumpRayCast as RayCast2D
 onready var movement_cooldown := $MovementCooldown as Timer
 onready var attack_cooldown := $AttackCooldown as Timer
@@ -72,6 +74,14 @@ func _physics_process(delta: float) -> void:
 
 func on_hit() -> void:
 	emit_signal("hit")
+	collision_layer = 0
+	set_process(false)
+	set_physics_process(false)
+	sprite.modulate = Color.transparent
+	particles.emitting = true
+	attack_cooldown.stop()
+	yield(get_tree().create_timer(0.5), "timeout")
+	
 	queue_free()
 
 

@@ -1,8 +1,32 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/character/character_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/character/enemy/enemy.gd" type="Script" id=2]
 [ext_resource path="res://src/character/enemy/assets/enemy.png" type="Texture" id=3]
+[ext_resource path="res://src/projectile/assets/projectile_shatter.png" type="Texture" id=4]
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0, 0.10559, 0.745342, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+flag_align_y = true
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 150, 0 )
+initial_velocity = 150.0
+initial_velocity_random = 0.25
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 25.0
+damping_random = 1.0
+scale = 0.5
+scale_random = 0.1
+color_ramp = SubResource( 9 )
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -127,12 +151,20 @@ texture = ExtResource( 3 )
 hframes = 4
 vframes = 3
 
-[node name="JumpRayCast" type="RayCast2D" parent="." index="4"]
+[node name="Particles2D" type="Particles2D" parent="." index="1"]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 10 )
+texture = ExtResource( 4 )
+
+[node name="JumpRayCast" type="RayCast2D" parent="." index="5"]
 enabled = true
 cast_to = Vector2( 0, -128 )
 collision_mask = 8
 
-[node name="AnimationPlayer" parent="." index="5"]
+[node name="AnimationPlayer" parent="." index="6"]
 anims/RESET = SubResource( 1 )
 anims/attack_release = SubResource( 3 )
 anims/fall = SubResource( 4 )
@@ -140,10 +172,10 @@ anims/idle = SubResource( 5 )
 anims/jump = SubResource( 6 )
 anims/run = SubResource( 7 )
 
-[node name="MovementCooldown" type="Timer" parent="." index="6"]
+[node name="MovementCooldown" type="Timer" parent="." index="7"]
 one_shot = true
 
-[node name="AttackCooldown" type="Timer" parent="." index="7"]
+[node name="AttackCooldown" type="Timer" parent="." index="8"]
 wait_time = 2.0
 autostart = true
 
