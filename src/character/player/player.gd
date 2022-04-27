@@ -25,12 +25,13 @@ onready var attack_cooldown := $AttackCooldown as Timer
 
 func _ready() -> void:
 	animation_player.play("idle")
+	play_shard_animation("idle")
 
 
 func _process(delta: float) -> void:
 	var attack_state := attack_logic(delta)
 	pivot.scale.x = sign(get_local_mouse_position().x)
-	set_animation(attack_state)
+	play_animation(attack_state)
 
 
 func _physics_process(delta: float) -> void:
@@ -67,25 +68,40 @@ func attack_logic(delta: float) -> int:
 	return result
 
 
-func set_animation(attack_state: int) -> void:
+func play_animation(attack_state: int) -> void:
 	match attack_state:
 		AttackState.STARTING:
 			animation_player.play("attack_charge")
+			play_shard_animation("attack_charge")
 			lock_animation = true
 		AttackState.RELEASING:
 			animation_player.play("attack_release")
+			play_shard_animation("attack_release")
 	
 	if lock_animation:
 		return
 	var anim := animation_player.current_animation
 	if velocity.y < 0.0 and anim != "jump":
 		animation_player.play("jump")
+		play_shard_animation("jump")
 	elif velocity.y > 0.0 and anim != "fall":
 		animation_player.play("fall")
+		play_shard_animation("fall")
 	elif velocity.x != 0.0 and anim != "run" and is_on_floor():
 		animation_player.play("run")
+		play_shard_animation("run")
 	elif velocity.x == 0.0 and anim != "idle" and is_on_floor():
 		animation_player.play("idle")
+		play_shard_animation("idle")
+
+
+func play_shard_animation(anim: String) -> void:
+	Algorithm.for_each(shards.get_children(), funcref(self, "_play_shard_animation"), [anim])
+
+
+func _play_shard_animation(shard: Shard, args: Array) -> void:
+	var anim := args[0] as String
+	shard.play_animation(anim)
 
 
 func on_hit() -> void:
