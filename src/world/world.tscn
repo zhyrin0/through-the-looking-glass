@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/world/assets/world_tileset.tres" type="TileSet" id=1]
+
+[node name="World" type="Node2D"]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Ground" type="TileMap" parent="."]
+modulate = Color( 0.74902, 0.74902, 0.74902, 1 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 4
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 589825, 4, 0, 589826, 5, 0, 589827, 3, 0, 589829, 4, 0, 589831, 5, 0, 589833, 3, 0, 589834, 4, 0, 589835, 5, 0, 589837, 4, 0, 589838, 5, 0, 589839, 4, 0, 589841, 3, 0, 589842, 3, 0, 589843, 5, 0, 589844, 5, 0, 589845, 5, 0, 589846, 5, 0, 655360, 6, 0, 655361, 6, 0, 655362, 6, 0, 655363, 6, 0, 655364, 6, 0, 655365, 6, 0, 655366, 6, 0, 655367, 6, 0, 655368, 6, 0, 655369, 6, 0, 655370, 6, 0, 655371, 6, 0, 655372, 6, 0, 655373, 6, 0, 655374, 6, 0, 655375, 6, 0, 655376, 6, 0, 655377, 6, 0, 655378, 6, 0, 655379, 6, 0, 655380, 5, 0, 655381, 5, 0, 655382, 5, 0, 720896, 7, 0, 720897, 7, 0, 720898, 7, 0, 720899, 7, 0, 720900, 7, 0, 720901, 7, 0, 720902, 7, 0, 720903, 7, 0, 720904, 7, 0, 720905, 7, 0, 720906, 7, 0, 720907, 7, 0, 720908, 7, 0, 720909, 7, 0, 720910, 7, 0, 720911, 7, 0, 720912, 7, 0, 720913, 7, 0, 720914, 7, 0, 720915, 7, 0, 720916, 5, 0, 720917, 5, 0, 720918, 5, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PlatformLevel1" type="Node2D" parent="."]
+modulate = Color( 0.87451, 0.87451, 0.87451, 1 )
+position = Vector2( 0, -32 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Platform01" type="TileMap" parent="PlatformLevel1"]
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 8
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 393216, 3, 0, 393217, 5, 0, 393218, 4, 0, 393219, 3, 0, 393220, 5, 0, 458752, 1, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 2, 0 )
+
+[node name="Platform02" type="TileMap" parent="PlatformLevel1"]
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 8
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 393216, 3, 0, 393217, 5, 0, 393218, 4, 0, 393219, 3, 0, 393220, 5, 0, 393231, 5, 0, 393232, 3, 0, 393233, 3, 0, 393234, 4, 0, 458752, 1, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 2, 0, 458767, 0, 0, 458768, 1, 0, 458769, 1, 0, 458770, 1, 0, 458771, 1, 0 )
+
+[node name="PlatformLevel2" type="Node2D" parent="."]
+position = Vector2( 0, -64 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Platform01" type="TileMap" parent="PlatformLevel2"]
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 8
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 196612, 5, 0, 196613, 3, 0, 196615, 3, 0, 196616, 4, 0, 196617, 5, 0, 196618, 4, 0, 196620, 3, 0, 196621, 5, 0, 196622, 4, 0, 196623, 5, 0, 262148, 0, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 2, 0 )
