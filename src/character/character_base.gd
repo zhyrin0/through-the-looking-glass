@@ -4,6 +4,11 @@ const Projectile := preload("res://src/projectile/projectile.gd")
 const ProjectileScene := preload("res://src/projectile/projectile.tscn")
 
 
+enum State {
+	CLAY = 0,
+	GLASS = 1,
+}
+
 const PLATFORM_COLLISION_BIT := 3
 export(int) var movement_speed: int
 export(int) var jump_height: int setget set_jump_height
@@ -13,6 +18,7 @@ var jump_velocity: float
 var gravity: float
 var velocity := Vector2.ZERO
 var fallthrough_platform: Node = null
+var state: int = State.CLAY
 onready var pivot := $Pivot as Node2D
 onready var projectile_pos := $Pivot/ProjectilePosition as Position2D
 onready var fall_raycast := $FallRayCast as RayCast2D
@@ -48,7 +54,7 @@ func attack() -> void:
 
 func _attack(p_owner: int, target_pos: Vector2, is_strong: bool) -> void:
 	var projectile := ProjectileScene.instance() as Projectile
-	projectile.init(p_owner, projectile_pos.global_position,
+	projectile.init(state, p_owner, projectile_pos.global_position,
 			(target_pos - projectile_pos.global_position).normalized(), is_strong)
 	get_parent().add_child(projectile)
 

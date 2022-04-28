@@ -1,10 +1,237 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/world/assets/tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://src/world/assets/hills.png" type="Texture" id=2]
-[ext_resource path="res://src/world/assets/mountains.png" type="Texture" id=3]
-[ext_resource path="res://src/world/assets/forest.png" type="Texture" id=4]
+[ext_resource path="res://src/world/background_sprite.gd" type="Script" id=2]
+[ext_resource path="res://assets/kaleidoscope.png" type="Texture" id=3]
+[ext_resource path="res://src/world/assets/transitioning_background.gdshader" type="Shader" id=4]
 [ext_resource path="res://src/world/assets/sky.png" type="Texture" id=5]
+[ext_resource path="res://src/world/assets/mountains.png" type="Texture" id=6]
+[ext_resource path="res://src/world/platform_tilemap.gd" type="Script" id=7]
+[ext_resource path="res://src/world/assets/forest.png" type="Texture" id=8]
+[ext_resource path="res://src/world/assets/mountains_alt.png" type="Texture" id=9]
+[ext_resource path="res://src/world/assets/hills.png" type="Texture" id=10]
+[ext_resource path="res://src/world/assets/tileset_alt.png" type="Texture" id=11]
+[ext_resource path="res://src/world/assets/forest_alt.png" type="Texture" id=12]
+[ext_resource path="res://src/world/assets/hills_alt.png" type="Texture" id=13]
+[ext_resource path="res://assets/transitioning.gdshader" type="Shader" id=14]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 4 )
+shader_param/to_state = 1
+shader_param/kaleidoscope_width = 0.1
+shader_param/kaleidoscope_time_scale = 3.5
+shader_param/kaleidoscope_intensity = 0.35
+shader_param/color_1 = Color( 0.937255, 0.984314, 0.509804, 1 )
+shader_param/color_2 = Color( 0.690196, 1, 0.478431, 1 )
+shader_param/color_3 = Color( 0.529412, 1, 0.890196, 1 )
+shader_param/color_4 = Color( 0.184314, 0.541176, 1, 1 )
+shader_param/color_5 = Color( 0.933333, 0.54902, 1, 1 )
+shader_param/color_6 = Color( 1, 0.470588, 0.470588, 1 )
+shader_param/modulate = Color( 0.376471, 0.627451, 1, 1 )
+shader_param/modulate_alt = Color( 0.976471, 0.807843, 0.501961, 1 )
+shader_param/orb_screen_uv = Vector2( 0, 0 )
+shader_param/transition = 0.0
+shader_param/alt_texture = ExtResource( 5 )
+shader_param/kaleidoscope_texture = ExtResource( 3 )
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+const int CLAY = 0;
+const int GLASS = 1;
+const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);
+const vec4 GREEN = vec4(0.0, 1.0, 0.0, 1.0);
+const vec4 BLUE = vec4(0.0, 0.0, 1.0, 1.0);
+const vec4 YELLOW = vec4(1.0, 1.0, 0.0, 1.0);
+const vec4 CYAN = vec4(0.0, 1.0, 1.0, 1.0);
+const vec4 MAGENTA = vec4(1.0, 0.0, 1.0, 1.0);
+
+uniform int to_state = 1;
+uniform sampler2D alt_texture;
+uniform sampler2D kaleidoscope_texture;
+uniform float kaleidoscope_width : hint_range(0.0, 0.1);
+uniform float kaleidoscope_time_scale : hint_range(0.0, 5.0);
+uniform float kaleidoscope_intensity : hint_range(0.0, 1.0);
+uniform vec4 color_1 : hint_color;
+uniform vec4 color_2 : hint_color;
+uniform vec4 color_3 : hint_color;
+uniform vec4 color_4 : hint_color;
+uniform vec4 color_5 : hint_color;
+uniform vec4 color_6 : hint_color;
+uniform vec4 modulate : hint_color;
+uniform vec4 modulate_alt : hint_color;
+uniform vec2 orb_screen_uv;
+uniform float transition : hint_range(0.0, 1.0);
+
+
+vec4 calculate_kaleidoscope(vec2 screen_uv, float time) {
+	vec2 kaleidoscope_uv = screen_uv * vec2(16.0, -9.0) * 0.125 + vec2(-0.5, 0.05);
+	vec4 kaleidoscope_color = texture(kaleidoscope_texture, kaleidoscope_uv);
+	float delta = sin(time * kaleidoscope_time_scale);
+	
+	if (kaleidoscope_color == RED) {
+		kaleidoscope_color = mix(color_1, color_3, delta) * 0.75;
+	}
+	if (kaleidoscope_color == GREEN) {
+		kaleidoscope_color = mix(color_2, color_4, delta) * 0.75;
+	}
+	if (kaleidoscope_color == BLUE) {
+		kaleidoscope_color = mix(color_3, color_5, delta) * 0.75;
+	}
+	if (kaleidoscope_color == YELLOW) {
+		kaleidoscope_color = mix(color_4, color_6, delta) * 0.75;
+	}
+	if (kaleidoscope_color == CYAN) {
+		kaleidoscope_color = mix(color_5, color_1, delta) * 0.75;
+	}
+	if (kaleidoscope_color == MAGENTA) {
+		kaleidoscope_color = mix(color_6, color_2, delta) * 0.75;
+	}
+	
+	return kaleidoscope_color;
+}
+
+
+float range_remap(float value, float in_a, float in_b, float out_a, float out_b) {
+	return (value - in_a) / (in_b - in_a) * (out_b - out_a) + out_a;
+}
+
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	vec4 alt_color = texture(alt_texture, UV);
+	vec4 kaleidoscope_color = calculate_kaleidoscope(SCREEN_UV, TIME);
+	
+	vec4 current_color = to_state == GLASS ? color : alt_color;
+	vec4 to_color = to_state == GLASS ? alt_color : color;
+	vec4 current_modulate = to_state == GLASS ? modulate : modulate_alt;
+	vec4 to_modulate = to_state == GLASS ? modulate_alt : modulate;
+	
+	vec2 resolution = 1.0 / SCREEN_PIXEL_SIZE;
+	vec2 screen_position = SCREEN_UV * resolution;
+	vec2 orb_position = vec2(orb_screen_uv.x, 1.0 - orb_screen_uv.y) * resolution;
+	float dist = distance(screen_position, orb_position);
+	float radius = transition * length(resolution);
+	
+	float screen_phase = range_remap(dist, 0.0, length(resolution), 0.0, 1.0);
+	COLOR = current_color * current_modulate;
+	if (screen_phase < transition) {
+		COLOR = to_color * to_modulate;
+	}
+	float kaleidoscope_cutoff = range_remap(transition, 0.0, 1.0, 0.0, kaleidoscope_width);
+	if (transition > kaleidoscope_cutoff && screen_phase > transition && screen_phase - kaleidoscope_cutoff < transition) {
+		COLOR.rgb += kaleidoscope_color.rgb * kaleidoscope_intensity;
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/to_state = 1
+shader_param/kaleidoscope_width = 0.1
+shader_param/kaleidoscope_time_scale = 3.5
+shader_param/kaleidoscope_intensity = 0.35
+shader_param/color_1 = Color( 0.937255, 0.984314, 0.509804, 1 )
+shader_param/color_2 = Color( 0.690196, 1, 0.478431, 1 )
+shader_param/color_3 = Color( 0.529412, 1, 0.890196, 1 )
+shader_param/color_4 = Color( 0.184314, 0.541176, 1, 1 )
+shader_param/color_5 = Color( 0.933333, 0.54902, 1, 1 )
+shader_param/color_6 = Color( 1, 0.470588, 0.470588, 1 )
+shader_param/modulate = Color( 0.12549, 0.376471, 0.501961, 1 )
+shader_param/modulate_alt = Color( 0.141176, 0.113725, 0.235294, 1 )
+shader_param/orb_screen_uv = Vector2( 0, 0 )
+shader_param/transition = 0.0
+shader_param/alt_texture = ExtResource( 9 )
+shader_param/kaleidoscope_texture = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 4 )
+shader_param/to_state = 1
+shader_param/kaleidoscope_width = 0.1
+shader_param/kaleidoscope_time_scale = 3.5
+shader_param/kaleidoscope_intensity = 0.35
+shader_param/color_1 = Color( 0.937255, 0.984314, 0.509804, 1 )
+shader_param/color_2 = Color( 0.690196, 1, 0.478431, 1 )
+shader_param/color_3 = Color( 0.529412, 1, 0.890196, 1 )
+shader_param/color_4 = Color( 0.184314, 0.541176, 1, 1 )
+shader_param/color_5 = Color( 0.933333, 0.54902, 1, 1 )
+shader_param/color_6 = Color( 1, 0.470588, 0.470588, 1 )
+shader_param/modulate = Color( 0, 0.627451, 0.376471, 1 )
+shader_param/modulate_alt = Color( 0.321569, 0.235294, 0.403922, 1 )
+shader_param/orb_screen_uv = Vector2( 0, 0 )
+shader_param/transition = 0.0
+shader_param/alt_texture = ExtResource( 13 )
+shader_param/kaleidoscope_texture = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 4 )
+shader_param/to_state = 1
+shader_param/kaleidoscope_width = 0.1
+shader_param/kaleidoscope_time_scale = 3.5
+shader_param/kaleidoscope_intensity = 0.35
+shader_param/color_1 = Color( 0.937255, 0.984314, 0.509804, 1 )
+shader_param/color_2 = Color( 0.690196, 1, 0.478431, 1 )
+shader_param/color_3 = Color( 0.529412, 1, 0.890196, 1 )
+shader_param/color_4 = Color( 0.184314, 0.541176, 1, 1 )
+shader_param/color_5 = Color( 0.933333, 0.54902, 1, 1 )
+shader_param/color_6 = Color( 1, 0.470588, 0.470588, 1 )
+shader_param/modulate = Color( 0, 0.564706, 0, 1 )
+shader_param/modulate_alt = Color( 0.352941, 0.137255, 0.282353, 1 )
+shader_param/orb_screen_uv = Vector2( 0, 0 )
+shader_param/transition = 0.0
+shader_param/alt_texture = ExtResource( 12 )
+shader_param/kaleidoscope_texture = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 14 )
+shader_param/to_state = 1
+shader_param/kaleidoscope_width = 0.1
+shader_param/kaleidoscope_time_scale = 3.5
+shader_param/kaleidoscope_intensity = 0.35
+shader_param/color_1 = Color( 0.937255, 0.984314, 0.509804, 1 )
+shader_param/color_2 = Color( 0.690196, 1, 0.478431, 1 )
+shader_param/color_3 = Color( 0.529412, 1, 0.890196, 1 )
+shader_param/color_4 = Color( 0.184314, 0.541176, 1, 1 )
+shader_param/color_5 = Color( 0.933333, 0.54902, 1, 1 )
+shader_param/color_6 = Color( 1, 0.470588, 0.470588, 1 )
+shader_param/orb_screen_uv = Vector2( 0, 0 )
+shader_param/transition = 0.0
+shader_param/alt_texture = ExtResource( 11 )
+shader_param/kaleidoscope_texture = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 14 )
+shader_param/to_state = 1
+shader_param/kaleidoscope_width = 0.1
+shader_param/kaleidoscope_time_scale = 3.5
+shader_param/kaleidoscope_intensity = 0.35
+shader_param/color_1 = Color( 0.937255, 0.984314, 0.509804, 1 )
+shader_param/color_2 = Color( 0.690196, 1, 0.478431, 1 )
+shader_param/color_3 = Color( 0.529412, 1, 0.890196, 1 )
+shader_param/color_4 = Color( 0.184314, 0.541176, 1, 1 )
+shader_param/color_5 = Color( 0.933333, 0.54902, 1, 1 )
+shader_param/color_6 = Color( 1, 0.470588, 0.470588, 1 )
+shader_param/orb_screen_uv = Vector2( 0, 0 )
+shader_param/transition = 0.0
+shader_param/alt_texture = ExtResource( 11 )
+shader_param/kaleidoscope_texture = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = ExtResource( 14 )
+shader_param/to_state = 1
+shader_param/kaleidoscope_width = 0.1
+shader_param/kaleidoscope_time_scale = 3.5
+shader_param/kaleidoscope_intensity = 0.35
+shader_param/color_1 = Color( 0.937255, 0.984314, 0.509804, 1 )
+shader_param/color_2 = Color( 0.690196, 1, 0.478431, 1 )
+shader_param/color_3 = Color( 0.529412, 1, 0.890196, 1 )
+shader_param/color_4 = Color( 0.184314, 0.541176, 1, 1 )
+shader_param/color_5 = Color( 0.933333, 0.54902, 1, 1 )
+shader_param/color_6 = Color( 1, 0.470588, 0.470588, 1 )
+shader_param/orb_screen_uv = Vector2( 0, 0 )
+shader_param/transition = 0.0
+shader_param/alt_texture = ExtResource( 11 )
+shader_param/kaleidoscope_texture = ExtResource( 3 )
 
 [node name="World" type="Node2D"]
 __meta__ = {
@@ -15,51 +242,58 @@ __meta__ = {
 [node name="Background" type="ParallaxBackground" parent="."]
 
 [node name="Sky" type="ParallaxLayer" parent="Background"]
-modulate = Color( 0.501961, 0.752941, 1, 1 )
 motion_mirroring = Vector2( 2560, 0 )
 
-[node name="Sprite" type="Sprite" parent="Background/Sky"]
+[node name="Sprite" type="Sprite" parent="Background/Sky" groups=["transitioning"]]
+material = SubResource( 1 )
 texture = ExtResource( 5 )
 centered = false
+script = ExtResource( 2 )
 
 [node name="Mountains" type="ParallaxLayer" parent="Background"]
-modulate = Color( 0.501961, 0.25098, 0, 0.501961 )
 motion_scale = Vector2( 0.1, 1 )
 motion_mirroring = Vector2( 2560, 0 )
 
-[node name="Sprite" type="Sprite" parent="Background/Mountains"]
-texture = ExtResource( 3 )
+[node name="Sprite" type="Sprite" parent="Background/Mountains" groups=["transitioning"]]
+material = SubResource( 6 )
+texture = ExtResource( 6 )
 centered = false
+script = ExtResource( 2 )
 
 [node name="Hills" type="ParallaxLayer" parent="Background"]
-modulate = Color( 0.25098, 0.501961, 0.25098, 0.376471 )
 position = Vector2( 0, 35 )
 motion_scale = Vector2( 0.2, 1 )
 motion_mirroring = Vector2( 2560, 0 )
 
-[node name="Sprite" type="Sprite" parent="Background/Hills"]
-texture = ExtResource( 2 )
+[node name="Sprite" type="Sprite" parent="Background/Hills" groups=["transitioning"]]
+material = SubResource( 3 )
+texture = ExtResource( 10 )
 centered = false
+script = ExtResource( 2 )
 
 [node name="Forest" type="ParallaxLayer" parent="Background"]
-modulate = Color( 0.752941, 0.752941, 0.752941, 1 )
 position = Vector2( 0, 55 )
 motion_scale = Vector2( 0.3, 1 )
 motion_mirroring = Vector2( 2560, 0 )
 
-[node name="Sprite" type="Sprite" parent="Background/Forest"]
-texture = ExtResource( 4 )
+[node name="Sprite" type="Sprite" parent="Background/Forest" groups=["transitioning"]]
+material = SubResource( 4 )
+texture = ExtResource( 8 )
 centered = false
+offset = Vector2( 0, 10 )
+script = ExtResource( 2 )
 
-[node name="Ground" type="TileMap" parent="."]
+[node name="Ground" type="TileMap" parent="." groups=["transitioning"]]
 modulate = Color( 0.74902, 0.74902, 0.74902, 1 )
+material = SubResource( 7 )
 scale = Vector2( 2, 2 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 4
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 589825, 4, 0, 589826, 5, 0, 589827, 3, 0, 589829, 4, 0, 589831, 5, 0, 589833, 3, 0, 589834, 4, 0, 589835, 5, 0, 589837, 4, 0, 589838, 5, 0, 589839, 4, 0, 589841, 3, 0, 589842, 3, 0, 589843, 5, 0, 655360, 6, 0, 655361, 6, 0, 655362, 6, 0, 655363, 6, 0, 655364, 6, 0, 655365, 6, 0, 655366, 6, 0, 655367, 6, 0, 655368, 6, 0, 655369, 6, 0, 655370, 6, 0, 655371, 6, 0, 655372, 6, 0, 655373, 6, 0, 655374, 6, 0, 655375, 6, 0, 655376, 6, 0, 655377, 6, 0, 655378, 6, 0, 655379, 6, 0, 720896, 7, 0, 720897, 7, 0, 720898, 7, 0, 720899, 7, 0, 720900, 7, 0, 720901, 7, 0, 720902, 7, 0, 720903, 7, 0, 720904, 7, 0, 720905, 7, 0, 720906, 7, 0, 720907, 7, 0, 720908, 7, 0, 720909, 7, 0, 720910, 7, 0, 720911, 7, 0, 720912, 7, 0, 720913, 7, 0, 720914, 7, 0, 720915, 7, 0 )
+tile_data = PoolIntArray( 655360, 6, 0 )
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -75,28 +309,15 @@ __meta__ = {
 collision_layer = 8
 collision_mask = 0
 
-[node name="TileMap" type="TileMap" parent="PlatformLevel1/Platform01"]
+[node name="TileMap" type="TileMap" parent="PlatformLevel1/Platform01" groups=["transitioning"]]
+material = SubResource( 8 )
 scale = Vector2( 2, 2 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 collision_use_parent = true
 format = 1
-tile_data = PoolIntArray( 393216, 3, 0, 393217, 5, 0, 393218, 5, 0, 393219, 4, 0, 393220, 5, 0, 524287, 0, 0, 458752, 1, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 2, 0 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Platform02" type="StaticBody2D" parent="PlatformLevel1"]
-collision_layer = 8
-collision_mask = 0
-
-[node name="TileMap" type="TileMap" parent="PlatformLevel1/Platform02"]
-scale = Vector2( 2, 2 )
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 32, 32 )
-collision_use_parent = true
-format = 1
-tile_data = PoolIntArray( 393230, 4, 0, 393231, 3, 0, 393232, 3, 0, 393234, 5, 0, 393235, 4, 0, 458766, 0, 0, 458767, 6, 0, 458768, 6, 0, 458769, 6, 0, 458770, 6, 0, 458771, 6, 0, 458772, 2, 0 )
+tile_data = PoolIntArray( 458752, 1, 0 )
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -108,17 +329,18 @@ __meta__ = {
 }
 
 [node name="Platform01" type="StaticBody2D" parent="PlatformLevel2"]
-position = Vector2( 0, 32 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="TileMap" type="TileMap" parent="PlatformLevel2/Platform01"]
+[node name="TileMap" type="TileMap" parent="PlatformLevel2/Platform01" groups=["transitioning"]]
+material = SubResource( 9 )
 scale = Vector2( 2, 2 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 collision_use_parent = true
 format = 1
-tile_data = PoolIntArray( 196613, 5, 0, 196614, 4, 0, 196615, 3, 0, 196617, 5, 0, 196618, 3, 0, 196619, 4, 0, 196620, 5, 0, 196621, 5, 0, 196622, 4, 0, 196623, 3, 0, 262148, 0, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 2, 0 )
+tile_data = PoolIntArray( 262144, 1, 0 )
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }

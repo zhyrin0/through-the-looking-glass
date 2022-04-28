@@ -18,11 +18,14 @@ onready var movement_cooldown := $MovementCooldown as Timer
 onready var attack_cooldown := $AttackCooldown as Timer
 
 
-func init(p_player: Node2D, p_global_pos: Vector2) -> void:
+func init(p_state: int, p_player: Node2D, p_global_pos: Vector2) -> void:
 	yield(self, "ready")
 	
 	global_position = p_global_pos
+	state = p_state
 	player = p_player
+	sprite.shader.set_shader_param("to_state", 1 - p_state)
+	sprite.shader.set_shader_param("transition", 0.0)
 	emit_signal("request_path", self)
 
 
@@ -72,7 +75,18 @@ func _physics_process(delta: float) -> void:
 	reset_collision_rules()
 
 
+# pls gods of clean code don't punish me for this hacky solution
+func set_transition_initial_values(to_state: int, _orb_screen_uv: Vector2) -> void:
+	state = to_state
+
+
+func animate_transition(_transition: float) -> void:
+	pass
+
+
 func on_hit() -> void:
+	if state == State.CLAY:
+		return
 	emit_signal("hit")
 	collision_layer = 0
 	set_process(false)

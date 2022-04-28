@@ -1,10 +1,47 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/projectile/projectile.gd" type="Script" id=1]
 [ext_resource path="res://src/projectile/assets/shoot.wav" type="AudioStream" id=2]
 [ext_resource path="res://src/projectile/assets/shatter.wav" type="AudioStream" id=3]
 [ext_resource path="res://src/projectile/assets/projectile.png" type="Texture" id=4]
 [ext_resource path="res://src/projectile/assets/projectile_shatter.png" type="Texture" id=5]
+[ext_resource path="res://assets/kaleidoscope.png" type="Texture" id=6]
+[ext_resource path="res://src/projectile/assets/projectile_alt.png" type="Texture" id=7]
+[ext_resource path="res://assets/transitioning.gdshader" type="Shader" id=8]
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 8 )
+shader_param/to_state = 1
+shader_param/kaleidoscope_width = 0.1
+shader_param/kaleidoscope_time_scale = 3.5
+shader_param/kaleidoscope_intensity = 0.35
+shader_param/color_1 = Color( 0.937255, 0.984314, 0.509804, 1 )
+shader_param/color_2 = Color( 0.690196, 1, 0.478431, 1 )
+shader_param/color_3 = Color( 0.529412, 1, 0.890196, 1 )
+shader_param/color_4 = Color( 0.184314, 0.541176, 1, 1 )
+shader_param/color_5 = Color( 0.933333, 0.54902, 1, 1 )
+shader_param/color_6 = Color( 1, 0.470588, 0.470588, 1 )
+shader_param/orb_screen_uv = Vector2( 0, 0 )
+shader_param/transition = 0.0
+shader_param/alt_texture = ExtResource( 4 )
+shader_param/kaleidoscope_texture = ExtResource( 6 )
+
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 25.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 15.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.85
+color_ramp = SubResource( 5 )
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
@@ -26,8 +63,9 @@ scale = 0.5
 scale_random = 0.1
 color_ramp = SubResource( 2 )
 
-[node name="Projectile" type="Sprite"]
-texture = ExtResource( 4 )
+[node name="Projectile" type="Sprite" groups=["transitioning"]]
+material = SubResource( 7 )
+texture = ExtResource( 7 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -40,6 +78,12 @@ collision_mask = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PoolVector2Array( -4, 0, 0, -2, 4, 0, 0, 2 )
+
+[node name="FlyParticles" type="Particles2D" parent="."]
+show_behind_parent = true
+local_coords = false
+process_material = SubResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="ShatterParticles" type="Particles2D" parent="."]
 show_behind_parent = true

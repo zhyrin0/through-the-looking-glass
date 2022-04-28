@@ -3,6 +3,8 @@ extends "../character_base.gd"
 const Shard := preload("shard/shard.gd")
 
 
+signal orb_used(to_state, orb_screen_uv, transition_time)
+
 enum AttackState {
 	NOT_ATTACKING,
 	STARTING,
@@ -21,6 +23,7 @@ onready var health := max_health
 onready var shards := $Pivot/Shards as Node
 onready var charge_audio := $ChargeAudio as AudioStreamPlayer
 onready var attack_cooldown := $AttackCooldown as Timer
+onready var transition_cooldown := $TransitionCooldown as Timer
 
 
 func _ready() -> void:
@@ -32,6 +35,8 @@ func _process(delta: float) -> void:
 	var attack_state := attack_logic(delta)
 	pivot.scale.x = sign(get_local_mouse_position().x)
 	play_animation(attack_state)
+	if transition_cooldown.is_stopped() and Input.is_action_just_pressed("use"):
+		use_orb()
 
 
 func _physics_process(delta: float) -> void:
@@ -104,7 +109,19 @@ func _play_shard_animation(shard: Shard, args: Array) -> void:
 	shard.play_animation(anim)
 
 
+func use_orb() -> void:
+	var orb_pos := projectile_pos.get_global_transform_with_canvas().origin
+	var viewport_size := get_viewport_rect().size
+	var orb_uv := Vector2(clamp(orb_pos.x, 0.0, viewport_size.x), clamp(orb_pos.y, 0.0, viewport_size.y))
+	orb_uv /= viewport_size
+	emit_signal("orb_used", 1 - state, orb_uv, transition_cooldown.wait_time)
+	state = 1 - state
+	transition_cooldown.start()
+
+
 func on_hit() -> void:
+	if state == State.CLAY:
+		return
 	health -= 1
 	if shards.get_child_count() > 0:
 		var shard := shards.get_child(0) as Shard
