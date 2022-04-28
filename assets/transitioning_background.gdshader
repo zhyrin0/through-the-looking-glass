@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+const int CLAY = 0;
+const int GLASS = 1;
 const vec4 RED = vec4(1.0, 0.0, 0.0, 1.0);
 const vec4 GREEN = vec4(0.0, 1.0, 0.0, 1.0);
 const vec4 BLUE = vec4(0.0, 0.0, 1.0, 1.0);
@@ -52,6 +54,7 @@ vec4 calculate_kaleidoscope(vec2 screen_uv, float time) {
 	return kaleidoscope_color;
 }
 
+
 float range_remap(float value, float in_a, float in_b, float out_a, float out_b) {
 	return (value - in_a) / (in_b - in_a) * (out_b - out_a) + out_a;
 }
@@ -62,10 +65,10 @@ void fragment() {
 	vec4 alt_color = texture(alt_texture, UV);
 	vec4 kaleidoscope_color = calculate_kaleidoscope(SCREEN_UV, TIME);
 	
-	vec4 current_color = to_state == 1 ? color : alt_color;
-	vec4 to_color = to_state == 1 ? alt_color : color;
-	vec4 current_modulate = to_state == 1 ? modulate : modulate_alt;
-	vec4 to_modulate = to_state == 1 ? modulate_alt : modulate;
+	vec4 current_color = to_state == GLASS ? color : alt_color;
+	vec4 to_color = to_state == GLASS ? alt_color : color;
+	vec4 current_modulate = to_state == GLASS ? modulate : modulate_alt;
+	vec4 to_modulate = to_state == GLASS ? modulate_alt : modulate;
 	
 	vec2 resolution = 1.0 / SCREEN_PIXEL_SIZE;
 	vec2 screen_position = SCREEN_UV * resolution;
