@@ -8,11 +8,11 @@
 [ext_resource path="res://src/character/player/player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/transitioning.material" type="Material" id=7]
 [ext_resource path="res://assets/kaleidoscope.png" type="Texture" id=8]
-[ext_resource path="res://assets/transitioning_background.material" type="Material" id=9]
+[ext_resource path="res://src/world/assets/transitioning_background.material" type="Material" id=9]
 [ext_resource path="res://src/world/assets/hills_alt.png" type="Texture" id=10]
 [ext_resource path="res://src/world/assets/mountains_alt.png" type="Texture" id=11]
 [ext_resource path="res://src/world/assets/forest_alt.png" type="Texture" id=12]
-[ext_resource path="res://assets/transitioning_background.gdshader" type="Shader" id=13]
+[ext_resource path="res://src/world/assets/transitioning_background.gdshader" type="Shader" id=13]
 [ext_resource path="res://src/world/platform_tilemap.gd" type="Script" id=14]
 [ext_resource path="res://src/world/background_sprite.gd" type="Script" id=15]
 
