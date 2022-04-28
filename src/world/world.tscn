@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/world/assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/world/background_sprite.gd" type="Script" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://src/world/assets/hills_alt.png" type="Texture" id=13]
 [ext_resource path="res://assets/transitioning.gdshader" type="Shader" id=14]
 [ext_resource path="res://src/level/level_base.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/world/world.gd" type="Script" id=16]
+[ext_resource path="res://src/character/player/player.tscn" type="PackedScene" id=17]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -235,6 +237,7 @@ shader_param/alt_texture = ExtResource( 11 )
 shader_param/kaleidoscope_texture = ExtResource( 3 )
 
 [node name="World" type="Node2D"]
+script = ExtResource( 16 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -500,7 +503,6 @@ __meta__ = {
 }
 
 [node name="Platform04" type="StaticBody2D" parent="PlatformLevel2"]
-visible = false
 collision_layer = 8
 collision_mask = 0
 
@@ -537,10 +539,12 @@ __meta__ = {
 [node name="Levels" type="Node2D" parent="."]
 
 [node name="Level01" parent="Levels" instance=ExtResource( 15 )]
+player_path = NodePath("../../Player")
 waves = PoolIntArray( 0 )
 
 [node name="Level02" parent="Levels" instance=ExtResource( 15 )]
 position = Vector2( 1280, 0 )
+player_path = NodePath("../../Player")
 waves = PoolIntArray( 1, 2 )
 spawn_cooldown_range = Vector2( 1, 2 )
 
@@ -589,6 +593,7 @@ __meta__ = {
 
 [node name="Level03" parent="Levels" instance=ExtResource( 15 )]
 position = Vector2( 2560, 0 )
+player_path = NodePath("../../Player")
 waves = PoolIntArray( 1, 2, 2 )
 spawn_cooldown_range = Vector2( 1, 2 )
 
@@ -649,6 +654,7 @@ __meta__ = {
 
 [node name="Level04" parent="Levels" instance=ExtResource( 15 )]
 position = Vector2( 3840, 0 )
+player_path = NodePath("../../Player")
 waves = PoolIntArray( 2, 2, 3 )
 spawn_cooldown_range = Vector2( 1, 2 )
 
@@ -719,6 +725,7 @@ __meta__ = {
 [node name="Level05" parent="Levels" instance=ExtResource( 15 )]
 visible = false
 position = Vector2( 3840, 0 )
+player_path = NodePath("../../Player")
 
 [node name="PlayerSpawnpoint" type="Position2D" parent="."]
 position = Vector2( 48, 584 )
@@ -726,11 +733,18 @@ __meta__ = {
 "_gizmo_extents_": 50.0
 }
 
+[node name="Player" parent="." instance=ExtResource( 17 )]
+position = Vector2( 48, 584 )
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 640, 360 )
 current = true
 limit_top = 0
 limit_bottom = 720
+
+[node name="GlassTransition" type="Tween" parent="."]
+
+[connection signal="orb_used" from="Player" to="." method="_on_Player_orb_used"]
 
 [editable path="Levels/Level02"]
 [editable path="Levels/Level03"]

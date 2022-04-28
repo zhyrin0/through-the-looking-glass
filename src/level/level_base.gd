@@ -38,6 +38,9 @@ func get_global_extents() -> Rect2:
 
 func start() -> void:
 	enemies_to_spawn = waves[current_wave]
+	if enemies_to_spawn == 0:
+		cleared()
+		return
 	spawn_cooldown.start()
 
 
