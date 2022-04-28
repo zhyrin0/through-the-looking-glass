@@ -54,7 +54,7 @@ func attack() -> void:
 
 func _attack(p_owner: int, target_pos: Vector2, is_strong: bool) -> void:
 	var projectile := ProjectileScene.instance() as Projectile
-	projectile.init(p_owner, projectile_pos.global_position,
+	projectile.init(state, p_owner, projectile_pos.global_position,
 			(target_pos - projectile_pos.global_position).normalized(), is_strong)
 	get_parent().add_child(projectile)
 
