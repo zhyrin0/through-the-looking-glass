@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/world/assets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://src/world/background_sprite.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://src/world/assets/forest_alt.png" type="Texture" id=12]
 [ext_resource path="res://src/world/assets/hills_alt.png" type="Texture" id=13]
 [ext_resource path="res://assets/transitioning.gdshader" type="Shader" id=14]
+[ext_resource path="res://src/level/level_base.tscn" type="PackedScene" id=15]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -292,7 +293,7 @@ cell_size = Vector2( 32, 32 )
 collision_layer = 4
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 655360, 6, 0 )
+tile_data = PoolIntArray( 655360, 6, 0, 655361, 6, 0, 655362, 6, 0, 655363, 6, 0, 655364, 6, 0, 655365, 6, 0, 655366, 6, 0, 655367, 6, 0, 655368, 6, 0, 655369, 6, 0, 655370, 6, 0, 655371, 6, 0, 655372, 6, 0, 655373, 6, 0, 655374, 6, 0, 655375, 6, 0, 655376, 6, 0, 655377, 6, 0, 655378, 6, 0, 655379, 6, 0, 655380, 6, 0, 655381, 6, 0, 655382, 6, 0, 655383, 6, 0, 655384, 6, 0, 655385, 6, 0, 655386, 6, 0, 655387, 6, 0, 655388, 6, 0, 655389, 6, 0, 655390, 6, 0, 655391, 6, 0, 655392, 6, 0, 655393, 6, 0, 655394, 6, 0, 655395, 6, 0, 655396, 6, 0, 655397, 6, 0, 655398, 6, 0, 655399, 6, 0, 655400, 6, 0, 655401, 6, 0, 655402, 6, 0, 655403, 6, 0, 655404, 6, 0, 655405, 6, 0, 655406, 6, 0, 655407, 6, 0, 655408, 6, 0, 655409, 6, 0, 655410, 6, 0, 655411, 6, 0, 655412, 6, 0, 655413, 6, 0, 655414, 6, 0, 655415, 6, 0, 655416, 6, 0, 655417, 6, 0, 655418, 6, 0, 655419, 6, 0, 720896, 7, 0, 720897, 7, 0, 720898, 7, 0, 720899, 7, 0, 720900, 7, 0, 720901, 7, 0, 720902, 7, 0, 720903, 7, 0, 720904, 7, 0, 720905, 7, 0, 720906, 7, 0, 720907, 7, 0, 720908, 7, 0, 720909, 7, 0, 720910, 7, 0, 720911, 7, 0, 720912, 7, 0, 720913, 7, 0, 720914, 7, 0, 720915, 7, 0, 720916, 7, 0, 720917, 7, 0, 720918, 7, 0, 720919, 7, 0, 720920, 7, 0, 720921, 7, 0, 720922, 7, 0, 720923, 7, 0, 720924, 7, 0, 720925, 7, 0, 720926, 7, 0, 720927, 7, 0, 720928, 7, 0, 720929, 7, 0, 720930, 7, 0, 720931, 7, 0, 720932, 7, 0, 720933, 7, 0, 720934, 7, 0, 720935, 7, 0, 720936, 7, 0, 720937, 7, 0, 720938, 7, 0, 720939, 7, 0, 720940, 7, 0, 720941, 7, 0, 720942, 7, 0, 720943, 7, 0, 720944, 7, 0, 720945, 7, 0, 720946, 7, 0, 720947, 7, 0, 720948, 7, 0, 720949, 7, 0, 720950, 7, 0, 720951, 7, 0, 720952, 7, 0, 720953, 7, 0, 720954, 7, 0, 720955, 7, 0 )
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
@@ -316,7 +317,92 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 collision_use_parent = true
 format = 1
-tile_data = PoolIntArray( 458752, 1, 0 )
+tile_data = PoolIntArray( 393221, 4, 0, 393223, 5, 0, 393224, 5, 0, 393225, 5, 0, 393226, 4, 0, 393229, 3, 0, 393230, 4, 0, 458757, 0, 0, 458758, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 458766, 2, 0 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Platform02" type="StaticBody2D" parent="PlatformLevel1"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="TileMap" type="TileMap" parent="PlatformLevel1/Platform02" groups=["transitioning"]]
+material = SubResource( 8 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_use_parent = true
+format = 1
+tile_data = PoolIntArray( 393239, 4, 0, 393240, 5, 0, 393242, 4, 0, 458775, 0, 0, 458776, 1, 0, 458777, 1, 0, 458778, 1, 0, 458779, 2, 0 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Platform03" type="StaticBody2D" parent="PlatformLevel1"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="TileMap" type="TileMap" parent="PlatformLevel1/Platform03" groups=["transitioning"]]
+material = SubResource( 8 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_use_parent = true
+format = 1
+tile_data = PoolIntArray( 393247, 4, 0, 393248, 3, 0, 458783, 0, 0, 458784, 1, 0, 458785, 2, 0 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Platform04" type="StaticBody2D" parent="PlatformLevel1"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="TileMap" type="TileMap" parent="PlatformLevel1/Platform04" groups=["transitioning"]]
+material = SubResource( 8 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_use_parent = true
+format = 1
+tile_data = PoolIntArray( 393259, 5, 0, 393262, 3, 0, 458794, 0, 0, 458795, 1, 0, 458796, 1, 0, 458797, 1, 0, 458798, 1, 0, 458799, 2, 0 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Platform05" type="StaticBody2D" parent="PlatformLevel1"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="TileMap" type="TileMap" parent="PlatformLevel1/Platform05" groups=["transitioning"]]
+material = SubResource( 8 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_use_parent = true
+format = 1
+tile_data = PoolIntArray( 458803, 0, 0, 458804, 1, 0, 458805, 2, 0 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Platform06" type="StaticBody2D" parent="PlatformLevel1"]
+visible = false
+collision_layer = 8
+collision_mask = 0
+
+[node name="TileMap" type="TileMap" parent="PlatformLevel1/Platform06" groups=["transitioning"]]
+material = SubResource( 8 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_use_parent = true
+format = 1
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
@@ -339,10 +425,185 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 collision_use_parent = true
 format = 1
-tile_data = PoolIntArray( 262144, 1, 0 )
+tile_data = PoolIntArray( 196616, 3, 0, 196617, 5, 0, 196618, 5, 0, 196619, 4, 0, 196620, 3, 0, 262151, 0, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 2, 0 )
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
+}
+
+[node name="Platform02" type="StaticBody2D" parent="PlatformLevel2"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="TileMap" type="TileMap" parent="PlatformLevel2/Platform02" groups=["transitioning"]]
+material = SubResource( 9 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_use_parent = true
+format = 1
+tile_data = PoolIntArray( 196633, 4, 0, 196634, 5, 0, 196636, 5, 0, 196637, 5, 0, 196638, 3, 0, 196639, 4, 0, 262169, 0, 0, 262170, 1, 0, 262171, 1, 0, 262172, 1, 0, 262173, 1, 0, 262174, 1, 0, 262175, 1, 0, 262176, 2, 0 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Platform03" type="StaticBody2D" parent="PlatformLevel2"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="TileMap" type="TileMap" parent="PlatformLevel2/Platform03" groups=["transitioning"]]
+material = SubResource( 9 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_use_parent = true
+format = 1
+tile_data = PoolIntArray( 196655, 5, 0, 196656, 4, 0, 196657, 5, 0, 196661, 4, 0, 196662, 3, 0, 262191, 0, 0, 262192, 1, 0, 262193, 1, 0, 262194, 1, 0, 262195, 1, 0, 262196, 1, 0, 262197, 1, 0, 262198, 1, 0, 262199, 2, 0 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Platform04" type="StaticBody2D" parent="PlatformLevel2"]
+visible = false
+collision_layer = 8
+collision_mask = 0
+
+[node name="TileMap" type="TileMap" parent="PlatformLevel2/Platform04" groups=["transitioning"]]
+material = SubResource( 9 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_use_parent = true
+format = 1
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Levels" type="Node2D" parent="."]
+
+[node name="Level01" parent="Levels" instance=ExtResource( 15 )]
+waves = PoolIntArray( 0 )
+
+[node name="Level02" parent="Levels" instance=ExtResource( 15 )]
+position = Vector2( 1280, 0 )
+waves = PoolIntArray( 1, 1 )
+
+[node name="Spawnpoint01" type="Position2D" parent="Levels/Level02/Spawnpoints" index="0"]
+position = Vector2( 1312, 584 )
+
+[node name="WaypointNavigation" parent="Levels/Level02" index="5"]
+connection_radius = 200.0
+waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+
+[node name="Waypoint01" type="Position2D" parent="Levels/Level02/WaypointNavigation" index="0"]
+position = Vector2( 1120, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint02" type="Position2D" parent="Levels/Level02/WaypointNavigation" index="1"]
+position = Vector2( 928, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint03" type="Position2D" parent="Levels/Level02/WaypointNavigation" index="2"]
+position = Vector2( 736, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint04" type="Position2D" parent="Levels/Level02/WaypointNavigation" index="3"]
+position = Vector2( 576, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint05" type="Position2D" parent="Levels/Level02/WaypointNavigation" index="4"]
+position = Vector2( 448, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint06" type="Position2D" parent="Levels/Level02/WaypointNavigation" index="5"]
+position = Vector2( 256, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Level03" parent="Levels" instance=ExtResource( 15 )]
+position = Vector2( 2560, 0 )
+waves = PoolIntArray( 1, 1, 2 )
+
+[node name="Spawnpoint01" type="Position2D" parent="Levels/Level03/Spawnpoints" index="0"]
+position = Vector2( -32, 584 )
+
+[node name="Spawnpoint02" type="Position2D" parent="Levels/Level03/Spawnpoints" index="1"]
+position = Vector2( 1312, 584 )
+
+[node name="WaypointNavigation" parent="Levels/Level03" index="5"]
+connection_radius = 270.0
+waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+
+[node name="Waypoint01" type="Position2D" parent="Levels/Level03/WaypointNavigation" index="0"]
+position = Vector2( 160, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint02" type="Position2D" parent="Levels/Level03/WaypointNavigation" index="1"]
+position = Vector2( 288, 360 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint03" type="Position2D" parent="Levels/Level03/WaypointNavigation" index="2"]
+position = Vector2( 480, 360 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint04" type="Position2D" parent="Levels/Level03/WaypointNavigation" index="3"]
+position = Vector2( 416, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint05" type="Position2D" parent="Levels/Level03/WaypointNavigation" index="4"]
+position = Vector2( 672, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint06" type="Position2D" parent="Levels/Level03/WaypointNavigation" index="5"]
+position = Vector2( 768, 360 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint07" type="Position2D" parent="Levels/Level03/WaypointNavigation" index="6"]
+position = Vector2( 904, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint08" type="Position2D" parent="Levels/Level03/WaypointNavigation" index="7"]
+position = Vector2( 1120, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Level04" parent="Levels" instance=ExtResource( 15 )]
+visible = false
+position = Vector2( 2560, 0 )
+
+[node name="PlayerSpawnpoint" type="Position2D" parent="."]
+position = Vector2( 48, 584 )
+__meta__ = {
+"_gizmo_extents_": 50.0
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -350,3 +611,6 @@ position = Vector2( 640, 360 )
 current = true
 limit_top = 0
 limit_bottom = 720
+
+[editable path="Levels/Level02"]
+[editable path="Levels/Level03"]
