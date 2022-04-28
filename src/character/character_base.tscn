@@ -1,8 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/character/character_base.gd" type="Script" id=1]
-[ext_resource path="res://src/character/glass.gdshader" type="Shader" id=2]
+[ext_resource path="res://src/character/assets/glass.gdshader" type="Shader" id=2]
 [ext_resource path="res://src/character/assets/glass.png" type="Texture" id=3]
+
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 2 )
