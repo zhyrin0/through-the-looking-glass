@@ -123,11 +123,16 @@ func on_hit() -> void:
 	if state == State.CLAY:
 		return
 	health -= 1
-	if shards.get_child_count() > 0:
-		var shard := shards.get_child(0) as Shard
+	var shard: Shard = Algorithm.find_if(shards.get_children(), funcref(self, "_is_unbroken_shard"))
+	if shard:
+		
 		shard.break_off()
 	if health == 0:
 		queue_free()
+
+
+func _is_unbroken_shard(shard: Shard, _args: Array) -> bool:
+	return not shard.broken_off
 
 
 func attack() -> void:
