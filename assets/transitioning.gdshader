@@ -7,6 +7,7 @@ const vec4 YELLOW = vec4(1.0, 1.0, 0.0, 1.0);
 const vec4 CYAN = vec4(0.0, 1.0, 1.0, 1.0);
 const vec4 MAGENTA = vec4(1.0, 0.0, 1.0, 1.0);
 
+uniform int to_state = 1;
 uniform sampler2D alt_texture;
 uniform sampler2D kaleidoscope_texture;
 uniform float kaleidoscope_width : hint_range(0.0, 0.1);
@@ -59,6 +60,9 @@ void fragment() {
 	vec4 alt_color = texture(alt_texture, UV);
 	vec4 kaleidoscope_color = calculate_kaleidoscope(SCREEN_UV, TIME);
 	
+	vec4 current_color = to_state == 1 ? color : alt_color;
+	vec4 to_color = to_state == 1 ? alt_color : color;
+	
 	vec2 resolution = 1.0 / SCREEN_PIXEL_SIZE;
 	vec2 screen_position = SCREEN_UV * resolution;
 	vec2 orb_position = vec2(orb_screen_uv.x, 1.0 - orb_screen_uv.y) * resolution;
@@ -66,9 +70,9 @@ void fragment() {
 	float radius = transition * length(resolution);
 	
 	float screen_phase = range_remap(dist, 0.0, length(resolution), 0.0, 1.0);
-	COLOR = color;
+	COLOR = current_color;
 	if (screen_phase < transition) {
-		COLOR = alt_color;
+		COLOR = to_color;
 	}
 	float kaleidoscope_cutoff = range_remap(transition, 0.0, 1.0, 0.0, kaleidoscope_width);
 	if (transition > kaleidoscope_cutoff && screen_phase > transition && screen_phase - kaleidoscope_cutoff < transition) {
