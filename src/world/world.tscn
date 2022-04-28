@@ -724,7 +724,7 @@ __meta__ = {
 
 [node name="Level05" parent="Levels" instance=ExtResource( 15 )]
 visible = false
-position = Vector2( 3840, 0 )
+position = Vector2( 5120, 0 )
 player_path = NodePath("../../Player")
 
 [node name="PlayerSpawnpoint" type="Position2D" parent="."]
@@ -736,14 +736,26 @@ __meta__ = {
 [node name="Player" parent="." instance=ExtResource( 17 )]
 position = Vector2( 48, 584 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 640, 360 )
+[node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
+limit_left = 0
 limit_top = 0
+limit_right = 1280
 limit_bottom = 720
+
+[node name="LevelTransition" type="Tween" parent="."]
 
 [node name="GlassTransition" type="Tween" parent="."]
 
+[connection signal="finished" from="Levels/Level01" to="." method="_on_Level_finished"]
+[connection signal="entered" from="Levels/Level02" to="." method="_on_Level_entered"]
+[connection signal="finished" from="Levels/Level02" to="." method="_on_Level_finished"]
+[connection signal="entered" from="Levels/Level03" to="." method="_on_Level_entered"]
+[connection signal="finished" from="Levels/Level03" to="." method="_on_Level_finished"]
+[connection signal="entered" from="Levels/Level04" to="." method="_on_Level_entered"]
+[connection signal="finished" from="Levels/Level04" to="." method="_on_Level_finished"]
+[connection signal="entered" from="Levels/Level05" to="." method="_on_Level_entered"]
+[connection signal="finished" from="Levels/Level05" to="." method="_on_Level_finished"]
 [connection signal="orb_used" from="Player" to="." method="_on_Player_orb_used"]
 
 [editable path="Levels/Level02"]

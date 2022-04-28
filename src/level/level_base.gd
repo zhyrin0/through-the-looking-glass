@@ -6,8 +6,8 @@ const Player := preload("res://src/character/player/player.gd")
 const WaypointNavigation := preload("res://src/character/enemy/waypoint_navigation.gd")
 
 
-signal entered
-signal finished
+signal entered(p_self)
+signal finished(p_self)
 
 const BARRIER_COLLISION_BIT := 5
 export(NodePath) var player_path: NodePath
@@ -59,7 +59,7 @@ func cleared() -> void:
 
 func finish() -> void:
 	right_barrier.set_collision_layer_bit(BARRIER_COLLISION_BIT, false)
-	emit_signal("finished")
+	emit_signal("finished", self)
 
 
 func set_spawn_cooldown() -> void:
@@ -71,7 +71,7 @@ func _on_EnterArea_body_entered(_body: Node) -> void:
 	var enter_area := $EnterArea as Area2D
 	enter_area.set_deferred("monitoring", false)
 	enter_area.set_deferred("monitorable", false)
-	emit_signal("entered")
+	emit_signal("entered", self)
 	yield(get_tree().create_timer(wave_cooldown.wait_time), "timeout")
 	
 	start()
