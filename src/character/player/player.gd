@@ -12,11 +12,6 @@ enum AttackState {
 	RELEASING,
 }
 
-enum State {
-	CLAY = 0,
-	GLASS = 1,
-}
-
 export(int) var max_health: int
 export(float) var strong_charge: float
 var attack_charge := 0.0
@@ -24,7 +19,6 @@ var use_strong_attack := false
 var charge_audio_triggered := false
 var score := 0
 var lock_animation := false
-var state: int = State.CLAY
 onready var health := max_health
 onready var shards := $Pivot/Shards as Node
 onready var charge_audio := $ChargeAudio as AudioStreamPlayer

@@ -44,7 +44,7 @@ func start() -> void:
 func spawn() -> void:
 	var enemy := EnemyScene.instance() as Enemy
 	var spawnpoint := spawnpoints.get_child(randi() % spawnpoints.get_child_count()) as Node2D
-	enemy.init(player, spawnpoint.global_position)
+	enemy.init(player.state, player, spawnpoint.global_position)
 	enemy.connect("request_path", navigation, "on_Enemy_request_path")
 	enemy.connect("hit", self, "_on_Enemy_hit")
 	enemies.add_child(enemy)

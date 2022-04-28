@@ -1,9 +1,32 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/character/character_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/character/enemy/enemy.gd" type="Script" id=2]
 [ext_resource path="res://src/character/enemy/assets/enemy.png" type="Texture" id=3]
 [ext_resource path="res://src/projectile/assets/projectile_shatter.png" type="Texture" id=4]
+[ext_resource path="res://src/character/character_sprite.gd" type="Script" id=5]
+[ext_resource path="res://src/character/enemy/assets/enemy_alt.png" type="Texture" id=6]
+[ext_resource path="res://assets/kaleidoscope.png" type="Texture" id=7]
+[ext_resource path="res://src/character/assets/glass.png" type="Texture" id=8]
+[ext_resource path="res://src/character/assets/character.gdshader" type="Shader" id=9]
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = ExtResource( 9 )
+shader_param/to_state = 1
+shader_param/kaleidoscope_width = 0.1
+shader_param/kaleidoscope_time_scale = 3.5
+shader_param/kaleidoscope_intensity = 0.35
+shader_param/color_1 = Color( 0.937255, 0.984314, 0.509804, 1 )
+shader_param/color_2 = Color( 0.690196, 1, 0.478431, 1 )
+shader_param/color_3 = Color( 0.529412, 1, 0.890196, 1 )
+shader_param/color_4 = Color( 0.184314, 0.541176, 1, 1 )
+shader_param/color_5 = Color( 0.933333, 0.54902, 1, 1 )
+shader_param/color_6 = Color( 1, 0.470588, 0.470588, 1 )
+shader_param/orb_screen_uv = Vector2( 0, 0 )
+shader_param/transition = 0.0
+shader_param/alt_texture = ExtResource( 3 )
+shader_param/kaleidoscope_texture = ExtResource( 7 )
+shader_param/glass_texture = ExtResource( 8 )
 
 [sub_resource type="Gradient" id=8]
 offsets = PoolRealArray( 0, 0.10559, 0.745342, 1 )
@@ -140,16 +163,18 @@ tracks/0/keys = {
 "values": [ 4, 5, 6, 7 ]
 }
 
-[node name="Enemy" instance=ExtResource( 1 )]
+[node name="Enemy" groups=["transitioning"] instance=ExtResource( 1 )]
 collision_layer = 2
 script = ExtResource( 2 )
 movement_speed = 150
 
 [node name="Sprite" parent="Pivot" index="0"]
+material = SubResource( 11 )
 scale = Vector2( 3.5, 3.5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 6 )
 hframes = 4
 vframes = 3
+script = ExtResource( 5 )
 
 [node name="Particles2D" type="Particles2D" parent="." index="1"]
 emitting = false
