@@ -168,7 +168,7 @@ collision_layer = 2
 script = ExtResource( 2 )
 movement_speed = 150
 
-[node name="Sprite" parent="Pivot" index="0"]
+[node name="Sprite" parent="Pivot" index="0" groups=["transitioning"]]
 material = SubResource( 11 )
 scale = Vector2( 3.5, 3.5 )
 texture = ExtResource( 6 )
