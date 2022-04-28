@@ -1,4 +1,4 @@
-extends Polygon2D
+extends Sprite
 
 
 enum Owner {
@@ -10,7 +10,9 @@ export(int) var speed: int
 var start_global_pos := Vector2.ZERO
 var direction := Vector2.ZERO
 var is_strong := false
+var collided := false
 onready var area := $Area2D as Area2D
+onready var shatter_particles := $ShatterParticles as Particles2D
 onready var shatter_audio := $ShatterAudio as AudioStreamPlayer
 onready var delete_timer := $DeleteTimer as Timer
 
@@ -47,10 +49,14 @@ func _draw() -> void:
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
+	if collided:
+		return
+	collided = true
 	area.set_deferred("monitoring", false)
-	visible = false
 	if body.has_method("on_hit"):
 		body.call("on_hit")
+	self_modulate = Color.transparent
+	shatter_particles.emitting = true
 	shatter_audio.play()
 	delete_timer.stop()
 	set_process(false)

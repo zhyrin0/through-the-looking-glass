@@ -13,9 +13,10 @@ var jump_velocity: float
 var gravity: float
 var velocity := Vector2.ZERO
 var fallthrough_platform: Node = null
-onready var fall_raycast := $FallRayCast as RayCast2D
 onready var pivot := $Pivot as Node2D
 onready var projectile_pos := $Pivot/ProjectilePosition as Position2D
+onready var fall_raycast := $FallRayCast as RayCast2D
+onready var animation_player := $AnimationPlayer as AnimationPlayer
 
 
 func jump() -> void:

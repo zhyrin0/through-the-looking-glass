@@ -1,40 +1,252 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/character/character_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/character/player/player.gd" type="Script" id=2]
-[ext_resource path="res://src/character/player/charge.wav" type="AudioStream" id=3]
+[ext_resource path="res://src/character/player/assets/charge.wav" type="AudioStream" id=3]
 [ext_resource path="res://src/character/player/shard/shard.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/character/player/assets/player.png" type="Texture" id=5]
+[ext_resource path="res://src/character/player/shard/assets/shard_01.png" type="Texture" id=6]
+[ext_resource path="res://src/character/assets/glass.png" type="Texture" id=7]
+[ext_resource path="res://src/character/glass.gdshader" type="Shader" id=8]
+[ext_resource path="res://src/character/player/shard/assets/shard_02.png" type="Texture" id=9]
+[ext_resource path="res://src/character/player/shard/assets/shard_03.png" type="Texture" id=10]
+[ext_resource path="res://src/character/player/shard/assets/shard_04.png" type="Texture" id=11]
+[ext_resource path="res://src/character/player/shard/assets/shard_07.png" type="Texture" id=12]
+[ext_resource path="res://src/character/player/shard/assets/shard_06.png" type="Texture" id=13]
+[ext_resource path="res://src/character/player/shard/assets/shard_05.png" type="Texture" id=14]
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 8 )
+shader_param/glass_texture = ExtResource( 7 )
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "attack_charge"
+length = 0.5
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 8, 9 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "attack_release"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 9, 10 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "attack"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "fall"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 0.8
+loop = true
+step = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "jump"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "run"
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pivot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
 
 [node name="Player" instance=ExtResource( 1 )]
 collision_layer = 1
 collision_mask = 44
 script = ExtResource( 2 )
 movement_speed = 300
-max_health = 3
+max_health = 7
 strong_charge = 0.5
 
-[node name="Polygon2D" parent="." index="0"]
-modulate = Color( 1, 1, 1, 0.501961 )
+[node name="Sprite" parent="Pivot" index="0"]
+modulate = Color( 0.752941, 0.752941, 0.752941, 1 )
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 5 )
+hframes = 4
+vframes = 3
 
-[node name="Shards" type="Node2D" parent="." index="1"]
+[node name="Shards" type="Node2D" parent="Pivot" index="2"]
 
-[node name="Shard" parent="Shards" index="0" instance=ExtResource( 4 )]
-position = Vector2( 0, -24 )
+[node name="Shard1" parent="Pivot/Shards" index="0" instance=ExtResource( 4 )]
+position = Vector2( -16, -40 )
+scale = Vector2( 3.5, 3.5 )
 
-[node name="Polygon2D" parent="Shards/Shard" index="0"]
-polygon = PoolVector2Array( 0, 24, 32, 8, 32, -32, -32, -32, -32, 8 )
+[node name="Sprite" parent="Pivot/Shards/Shard1" index="0"]
+material = SubResource( 8 )
+position = Vector2( 4.572, 11.428 )
+texture = ExtResource( 6 )
 
-[node name="Shard2" parent="Shards" index="1" instance=ExtResource( 4 )]
-position = Vector2( 16, 32 )
+[node name="Shard2" parent="Pivot/Shards" index="1" instance=ExtResource( 4 )]
+position = Vector2( 16, 16 )
+scale = Vector2( 3.5, 3.5 )
 
-[node name="Polygon2D" parent="Shards/Shard2" index="0"]
-polygon = PoolVector2Array( -16, -32, 16, -48, 16, 24, -16, 24 )
+[node name="Sprite" parent="Pivot/Shards/Shard2" index="0"]
+material = SubResource( 8 )
+position = Vector2( -4.572, -4.574 )
+texture = ExtResource( 9 )
 
-[node name="Shard3" parent="Shards" index="2" instance=ExtResource( 4 )]
-position = Vector2( -16, 32 )
+[node name="Shard3" parent="Pivot/Shards" index="2" instance=ExtResource( 4 )]
+position = Vector2( -8, 24 )
+scale = Vector2( 3.5, 3.5 )
 
-[node name="Polygon2D" parent="Shards/Shard3" index="0"]
-polygon = PoolVector2Array( 16, -32, 16, 24, -16, 24, -16, -48 )
+[node name="Sprite" parent="Pivot/Shards/Shard3" index="0"]
+material = SubResource( 8 )
+position = Vector2( 2.284, -6.856 )
+texture = ExtResource( 10 )
+
+[node name="Shard4" parent="Pivot/Shards" index="3" instance=ExtResource( 4 )]
+position = Vector2( -8, 0 )
+scale = Vector2( 3.5, 3.5 )
+
+[node name="Sprite" parent="Pivot/Shards/Shard4" index="0"]
+material = SubResource( 8 )
+position = Vector2( 2.285, 0 )
+texture = ExtResource( 11 )
+
+[node name="Shard5" parent="Pivot/Shards" index="4" instance=ExtResource( 4 )]
+position = Vector2( 16, -32 )
+scale = Vector2( 3.5, 3.5 )
+
+[node name="Sprite" parent="Pivot/Shards/Shard5" index="0"]
+material = SubResource( 8 )
+position = Vector2( -4.572, 9.146 )
+texture = ExtResource( 14 )
+
+[node name="Shard6" parent="Pivot/Shards" index="5" instance=ExtResource( 4 )]
+position = Vector2( -16, 8 )
+scale = Vector2( 3.5, 3.5 )
+
+[node name="Sprite" parent="Pivot/Shards/Shard6" index="0"]
+material = SubResource( 8 )
+position = Vector2( 4.572, -2.288 )
+texture = ExtResource( 13 )
+
+[node name="Shard7" parent="Pivot/Shards" index="6" instance=ExtResource( 4 )]
+position = Vector2( 0, 40 )
+scale = Vector2( 3.5, 3.5 )
+
+[node name="Sprite" parent="Pivot/Shards/Shard7" index="0"]
+material = SubResource( 8 )
+position = Vector2( 0, -11.428 )
+texture = ExtResource( 12 )
+
+[node name="AnimationPlayer" parent="." index="4"]
+anims/RESET = SubResource( 1 )
+anims/attack_charge = SubResource( 6 )
+anims/attack_release = SubResource( 7 )
+anims/fall = SubResource( 4 )
+anims/idle = SubResource( 2 )
+anims/jump = SubResource( 5 )
+anims/run = SubResource( 3 )
 
 [node name="ChargeAudio" type="AudioStreamPlayer" parent="." index="5"]
 stream = ExtResource( 3 )
@@ -43,6 +255,12 @@ stream = ExtResource( 3 )
 wait_time = 0.5
 one_shot = true
 
-[editable path="Shards/Shard"]
-[editable path="Shards/Shard2"]
-[editable path="Shards/Shard3"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="Pivot/Shards/Shard1"]
+[editable path="Pivot/Shards/Shard2"]
+[editable path="Pivot/Shards/Shard3"]
+[editable path="Pivot/Shards/Shard4"]
+[editable path="Pivot/Shards/Shard5"]
+[editable path="Pivot/Shards/Shard6"]
+[editable path="Pivot/Shards/Shard7"]

@@ -1,9 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/character/character_base.gd" type="Script" id=1]
+[ext_resource path="res://src/character/glass.gdshader" type="Shader" id=2]
+[ext_resource path="res://src/character/assets/glass.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 56 )
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 2 )
+shader_param/glass_texture = ExtResource( 3 )
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 20.0
+height = 72.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 14, 4 )
 
 [node name="CharacterBase" type="KinematicBody2D"]
 collision_layer = 0
@@ -16,18 +26,24 @@ jump_height = 256
 jump_time = 0.5
 fall_gravity_multiplier = 1.35
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PoolVector2Array( -32, -56, 32, -56, 32, 56, -32, 56 )
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Pivot"]
+material = SubResource( 4 )
+
+[node name="ProjectilePosition" type="Position2D" parent="Pivot"]
+position = Vector2( 32, 16 )
 
 [node name="BodyCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="FeetCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 52 )
+shape = SubResource( 2 )
 
 [node name="FallRayCast" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( 0, 64 )
 collision_mask = 8
 
-[node name="Pivot" type="Node2D" parent="."]
-
-[node name="ProjectilePosition" type="Position2D" parent="Pivot"]
-position = Vector2( 56, 0 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
