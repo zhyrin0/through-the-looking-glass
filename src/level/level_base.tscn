@@ -84,6 +84,8 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Pickups" type="Node2D" parent="."]
+
 [node name="SpawnCooldown" type="Timer" parent="."]
 
 [node name="WaveCooldown" type="Timer" parent="."]

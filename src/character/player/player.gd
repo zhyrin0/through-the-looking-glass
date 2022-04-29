@@ -141,6 +141,10 @@ func attack() -> void:
 	_attack(Projectile.Owner.PLAYER, get_global_mouse_position(), use_strong_attack)
 
 
+func heal() -> void:
+	print("heal")
+
+
 func _on_Enemy_hit() -> void:
 	score += 1
 

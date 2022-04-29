@@ -22,12 +22,15 @@ onready var right_barrier := $RightBarrier as StaticBody2D
 onready var spawnpoints := $Spawnpoints as Node
 onready var navigation := $WaypointNavigation as WaypointNavigation
 onready var enemies := $Enemies as Node
+onready var pickups := $Pickups as Node
 onready var spawn_cooldown := $SpawnCooldown as Timer
 onready var wave_cooldown := $WaveCooldown as Timer
 
 
 func _ready() -> void:
 	set_spawn_cooldown()
+	for pickup in pickups.get_children():
+		(pickup as Node2D).hide()
 
 
 func get_global_extents() -> Rect2:
@@ -54,6 +57,8 @@ func spawn() -> void:
 
 
 func cleared() -> void:
+	for pickup in pickups.get_children():
+		(pickup as Node2D).show()
 	finish()
 
 
