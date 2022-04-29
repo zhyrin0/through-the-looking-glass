@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/character/enemy/waypoint_navigation.gd" type="Script" id=1]
 [ext_resource path="res://src/level/level_base.gd" type="Script" id=2]
+[ext_resource path="res://src/level/assets/level_arrow.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 456 )
@@ -11,6 +12,39 @@ extents = Vector2( 8, 456 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 32, 456 )
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Continue:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "move_arrow"
+length = 2.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Continue:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -10, 0 ), Vector2( 0, 0 ) ]
+}
 
 [node name="LevelBase" type="Node2D"]
 script = ExtResource( 2 )
@@ -85,6 +119,16 @@ __meta__ = {
 }
 
 [node name="Pickups" type="Node2D" parent="."]
+
+[node name="Continue" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1216, 360 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 4 )
+anims/move_arrow = SubResource( 5 )
 
 [node name="SpawnCooldown" type="Timer" parent="."]
 

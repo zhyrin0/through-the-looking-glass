@@ -31,6 +31,8 @@ func _ready() -> void:
 	set_spawn_cooldown()
 	for pickup in pickups.get_children():
 		(pickup as Node2D).hide()
+	var animation_player := $AnimationPlayer as AnimationPlayer
+	animation_player.play("move_arrow")
 
 
 func get_global_extents() -> Rect2:
@@ -59,6 +61,8 @@ func spawn() -> void:
 func cleared() -> void:
 	for pickup in pickups.get_children():
 		(pickup as Node2D).show()
+	var continue_sprite := $Continue as Sprite
+	continue_sprite.show()
 	finish()
 
 
