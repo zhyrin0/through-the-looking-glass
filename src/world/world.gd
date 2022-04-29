@@ -39,3 +39,6 @@ func _on_Player_died() -> void:
 	camera.get_parent().remove_child(camera)
 	add_child(camera)
 	camera.global_position = tmp_global_pos
+	yield(get_tree().create_timer(2.0), "timeout")
+	
+	queue_free()
