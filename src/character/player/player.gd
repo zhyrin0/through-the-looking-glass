@@ -22,7 +22,7 @@ var score := 0
 var lock_animation := false
 onready var health := max_health
 onready var shards := $Pivot/Shards as Node
-onready var charge_audio := $ChargeAudio as AudioStreamPlayer
+onready var orb_audio := $OrbAudio as AudioStreamPlayer
 onready var attack_cooldown := $AttackCooldown as Timer
 onready var transition_cooldown := $TransitionCooldown as Timer
 
@@ -111,6 +111,7 @@ func _play_shard_animation(shard: Shard, args: Array) -> void:
 
 
 func use_orb() -> void:
+	orb_audio.play()
 	var orb_pos := projectile_pos.get_global_transform_with_canvas().origin
 	var viewport_size := get_viewport_rect().size
 	var orb_uv := Vector2(clamp(orb_pos.x, 0.0, viewport_size.x), clamp(orb_pos.y, 0.0, viewport_size.y))

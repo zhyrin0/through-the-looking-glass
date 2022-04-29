@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/shoot.wav-a841be5a4a259670c23901322becf0c5.sample"
+path="res://.import/whoosh.wav-c2b40f85ab8d3955229f1050aa05531b.sample"
 
 [deps]
 
-source_file="res://src/projectile/assets/shoot.wav"
-dest_files=[ "res://.import/shoot.wav-a841be5a4a259670c23901322becf0c5.sample" ]
+source_file="res://src/projectile/assets/whoosh.wav"
+dest_files=[ "res://.import/whoosh.wav-c2b40f85ab8d3955229f1050aa05531b.sample" ]
 
 [params]
 

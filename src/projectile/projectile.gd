@@ -20,6 +20,7 @@ var state: int = State.CLAY
 onready var area := $Area2D as Area2D
 onready var fly_particles := $FlyParticles as Particles2D
 onready var shatter_particles := $ShatterParticles as Particles2D
+onready var whoosh_audio := $WhooshAudio as AudioStreamPlayer
 onready var shatter_audio := $ShatterAudio as AudioStreamPlayer
 onready var delete_timer := $DeleteTimer as Timer
 onready var shader := material as ShaderMaterial
@@ -42,8 +43,7 @@ func init(p_state: int, p_owner: int, p_start_global_pos: Vector2, p_direction: 
 	global_position = p_start_global_pos
 	rotation = direction.angle()
 	area.set_collision_mask_bit(1 - p_owner, true)
-	var shoot_audio := $ShootAudio as AudioStreamPlayer
-	shoot_audio.pitch_scale = rand_range(0.9, 1.1)
+	whoosh_audio.pitch_scale = 0.5 if state == State.CLAY else 1.0
 
 
 func _process(_delta: float) -> void:
@@ -66,6 +66,7 @@ func _draw() -> void:
 
 func set_transition_initial_values(to_state: int, orb_screen_uv: Vector2) -> void:
 	state = to_state
+	whoosh_audio.pitch_scale = 0.5 if state == State.CLAY else 1.0
 	fly_particles.visible = state == State.CLAY
 	shatter_particles.visible = state == State.GLASS
 	shader.set_shader_param("transition", 0.0)
