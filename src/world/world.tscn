@@ -296,7 +296,7 @@ cell_size = Vector2( 32, 32 )
 collision_layer = 4
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 655360, 6, 0, 655361, 6, 0, 655362, 6, 0, 655363, 6, 0, 655364, 6, 0, 655365, 6, 0, 655366, 6, 0, 655367, 6, 0, 655368, 6, 0, 655369, 6, 0, 655370, 6, 0, 655371, 6, 0, 655372, 6, 0, 655373, 6, 0, 655374, 6, 0, 655375, 6, 0, 655376, 6, 0, 655377, 6, 0, 655378, 6, 0, 655379, 6, 0, 655380, 6, 0, 655381, 6, 0, 655382, 6, 0, 655383, 6, 0, 655384, 6, 0, 655385, 6, 0, 655386, 6, 0, 655387, 6, 0, 655388, 6, 0, 655389, 6, 0, 655390, 6, 0, 655391, 6, 0, 655392, 6, 0, 655393, 6, 0, 655394, 6, 0, 655395, 6, 0, 655396, 6, 0, 655397, 6, 0, 655398, 6, 0, 655399, 6, 0, 655400, 6, 0, 655401, 6, 0, 655402, 6, 0, 655403, 6, 0, 655404, 6, 0, 655405, 6, 0, 655406, 6, 0, 655407, 6, 0, 655408, 6, 0, 655409, 6, 0, 655410, 6, 0, 655411, 6, 0, 655412, 6, 0, 655413, 6, 0, 655414, 6, 0, 655415, 6, 0, 655416, 6, 0, 655417, 6, 0, 655418, 6, 0, 655419, 6, 0, 655420, 6, 0, 655421, 6, 0, 655422, 6, 0, 655423, 6, 0, 655424, 6, 0, 655425, 6, 0, 655426, 6, 0, 655427, 6, 0, 655428, 6, 0, 655429, 6, 0, 655430, 6, 0, 655431, 6, 0, 655432, 6, 0, 655433, 6, 0, 655434, 6, 0, 655435, 6, 0, 655436, 6, 0, 655437, 6, 0, 655438, 6, 0, 655439, 6, 0, 655440, 6, 0, 655441, 6, 0, 655442, 6, 0, 655443, 6, 0, 655444, 6, 0, 655445, 6, 0, 655446, 6, 0, 655447, 6, 0, 655448, 6, 0, 655449, 6, 0, 655450, 6, 0, 655451, 6, 0, 655452, 6, 0, 655453, 6, 0, 655454, 6, 0, 655455, 6, 0, 655456, 6, 0, 655457, 6, 0, 655458, 6, 0, 655459, 6, 0, 655460, 6, 0, 655461, 6, 0, 655462, 6, 0, 655463, 6, 0, 655464, 6, 0, 655465, 6, 0, 655466, 6, 0, 655467, 6, 0, 655468, 6, 0, 655469, 6, 0, 655470, 6, 0, 655471, 6, 0, 655472, 6, 0, 655473, 6, 0, 655474, 6, 0, 655475, 6, 0, 655476, 6, 0, 655477, 6, 0, 655478, 6, 0, 655479, 6, 0, 655480, 6, 0, 655481, 6, 0, 655482, 6, 0, 720896, 7, 0, 720897, 7, 0, 720898, 7, 0, 720899, 7, 0, 720900, 7, 0, 720901, 7, 0, 720902, 7, 0, 720903, 7, 0, 720904, 7, 0, 720905, 7, 0, 720906, 7, 0, 720907, 7, 0, 720908, 7, 0, 720909, 7, 0, 720910, 7, 0, 720911, 7, 0, 720912, 7, 0, 720913, 7, 0, 720914, 7, 0, 720915, 7, 0, 720916, 7, 0, 720917, 7, 0, 720918, 7, 0, 720919, 7, 0, 720920, 7, 0, 720921, 7, 0, 720922, 7, 0, 720923, 7, 0, 720924, 7, 0, 720925, 7, 0, 720926, 7, 0, 720927, 7, 0, 720928, 7, 0, 720929, 7, 0, 720930, 7, 0, 720931, 7, 0, 720932, 7, 0, 720933, 7, 0, 720934, 7, 0, 720935, 7, 0, 720936, 7, 0, 720937, 7, 0, 720938, 7, 0, 720939, 7, 0, 720940, 7, 0, 720941, 7, 0, 720942, 7, 0, 720943, 7, 0, 720944, 7, 0, 720945, 7, 0, 720946, 7, 0, 720947, 7, 0, 720948, 7, 0, 720949, 7, 0, 720950, 7, 0, 720951, 7, 0, 720952, 7, 0, 720953, 7, 0, 720954, 7, 0, 720955, 7, 0, 720956, 7, 0, 720957, 7, 0, 720958, 7, 0, 720959, 7, 0, 720960, 7, 0, 720961, 7, 0, 720962, 7, 0, 720963, 7, 0, 720964, 7, 0, 720965, 7, 0, 720966, 7, 0, 720967, 7, 0, 720968, 7, 0, 720969, 7, 0, 720970, 7, 0, 720971, 7, 0, 720972, 7, 0, 720973, 7, 0, 720974, 7, 0, 720975, 7, 0, 720976, 7, 0, 720977, 7, 0, 720978, 7, 0, 720979, 7, 0, 720980, 7, 0, 720981, 7, 0, 720982, 7, 0, 720983, 7, 0, 720984, 7, 0, 720985, 7, 0, 720986, 7, 0, 720987, 7, 0, 720988, 7, 0, 720989, 7, 0, 720990, 7, 0, 720991, 7, 0, 720992, 7, 0, 720993, 7, 0, 720994, 7, 0, 720995, 7, 0, 720996, 7, 0, 720997, 7, 0, 720998, 7, 0, 720999, 7, 0, 721000, 7, 0, 721001, 7, 0, 721002, 7, 0, 721003, 7, 0, 721004, 7, 0, 721005, 7, 0, 721006, 7, 0, 721007, 7, 0, 721008, 7, 0, 721009, 7, 0, 721010, 7, 0, 721011, 7, 0, 721012, 7, 0, 721013, 7, 0, 721014, 7, 0, 721015, 7, 0, 721016, 7, 0, 721017, 7, 0, 721018, 7, 0 )
+tile_data = PoolIntArray( 655360, 6, 0, 655361, 6, 0, 655362, 6, 0, 655363, 6, 0, 655364, 6, 0, 655365, 6, 0, 655366, 6, 0, 655367, 6, 0, 655368, 6, 0, 655369, 6, 0, 655370, 6, 0, 655371, 6, 0, 655372, 6, 0, 655373, 6, 0, 655374, 6, 0, 655375, 6, 0, 655376, 6, 0, 655377, 6, 0, 655378, 6, 0, 655379, 6, 0, 655380, 6, 0, 655381, 6, 0, 655382, 6, 0, 655383, 6, 0, 655384, 6, 0, 655385, 6, 0, 655386, 6, 0, 655387, 6, 0, 655388, 6, 0, 655389, 6, 0, 655390, 6, 0, 655391, 6, 0, 655392, 6, 0, 655393, 6, 0, 655394, 6, 0, 655395, 6, 0, 655396, 6, 0, 655397, 6, 0, 655398, 6, 0, 655399, 6, 0, 655400, 6, 0, 655401, 6, 0, 655402, 6, 0, 655403, 6, 0, 655404, 6, 0, 655405, 6, 0, 655406, 6, 0, 655407, 6, 0, 655408, 6, 0, 655409, 6, 0, 655410, 6, 0, 655411, 6, 0, 655412, 6, 0, 655413, 6, 0, 655414, 6, 0, 655415, 6, 0, 655416, 6, 0, 655417, 6, 0, 655418, 6, 0, 655419, 6, 0, 655420, 6, 0, 655421, 6, 0, 655422, 6, 0, 655423, 6, 0, 655424, 6, 0, 655425, 6, 0, 655426, 6, 0, 655427, 6, 0, 655428, 6, 0, 655429, 6, 0, 655430, 6, 0, 655431, 6, 0, 655432, 6, 0, 655433, 6, 0, 655434, 6, 0, 655435, 6, 0, 655436, 6, 0, 655437, 6, 0, 655438, 6, 0, 655439, 6, 0, 655440, 6, 0, 655441, 6, 0, 655442, 6, 0, 655443, 6, 0, 655444, 6, 0, 655445, 6, 0, 655446, 6, 0, 655447, 6, 0, 655448, 6, 0, 655449, 6, 0, 655450, 6, 0, 655451, 6, 0, 655452, 6, 0, 655453, 6, 0, 655454, 6, 0, 655455, 6, 0, 655456, 6, 0, 655457, 6, 0, 655458, 6, 0, 655459, 6, 0, 655460, 6, 0, 655461, 6, 0, 655462, 6, 0, 655463, 6, 0, 655464, 6, 0, 655465, 6, 0, 655466, 6, 0, 655467, 6, 0, 655468, 6, 0, 655469, 6, 0, 655470, 6, 0, 655471, 6, 0, 655472, 6, 0, 655473, 6, 0, 655474, 6, 0, 655475, 6, 0, 655476, 6, 0, 655477, 6, 0, 655478, 6, 0, 655479, 6, 0, 655480, 6, 0, 655481, 6, 0, 655482, 6, 0, 655483, 6, 0, 655484, 6, 0, 655485, 6, 0, 655486, 6, 0, 655487, 6, 0, 655488, 6, 0, 655489, 6, 0, 655490, 6, 0, 655491, 6, 0, 655492, 6, 0, 655493, 6, 0, 655494, 6, 0, 655495, 6, 0, 655496, 6, 0, 655497, 6, 0, 655498, 6, 0, 655499, 6, 0, 655500, 6, 0, 720896, 7, 0, 720897, 7, 0, 720898, 7, 0, 720899, 7, 0, 720900, 7, 0, 720901, 7, 0, 720902, 7, 0, 720903, 7, 0, 720904, 7, 0, 720905, 7, 0, 720906, 7, 0, 720907, 7, 0, 720908, 7, 0, 720909, 7, 0, 720910, 7, 0, 720911, 7, 0, 720912, 7, 0, 720913, 7, 0, 720914, 7, 0, 720915, 7, 0, 720916, 7, 0, 720917, 7, 0, 720918, 7, 0, 720919, 7, 0, 720920, 7, 0, 720921, 7, 0, 720922, 7, 0, 720923, 7, 0, 720924, 7, 0, 720925, 7, 0, 720926, 7, 0, 720927, 7, 0, 720928, 7, 0, 720929, 7, 0, 720930, 7, 0, 720931, 7, 0, 720932, 7, 0, 720933, 7, 0, 720934, 7, 0, 720935, 7, 0, 720936, 7, 0, 720937, 7, 0, 720938, 7, 0, 720939, 7, 0, 720940, 7, 0, 720941, 7, 0, 720942, 7, 0, 720943, 7, 0, 720944, 7, 0, 720945, 7, 0, 720946, 7, 0, 720947, 7, 0, 720948, 7, 0, 720949, 7, 0, 720950, 7, 0, 720951, 7, 0, 720952, 7, 0, 720953, 7, 0, 720954, 7, 0, 720955, 7, 0, 720956, 7, 0, 720957, 7, 0, 720958, 7, 0, 720959, 7, 0, 720960, 7, 0, 720961, 7, 0, 720962, 7, 0, 720963, 7, 0, 720964, 7, 0, 720965, 7, 0, 720966, 7, 0, 720967, 7, 0, 720968, 7, 0, 720969, 7, 0, 720970, 7, 0, 720971, 7, 0, 720972, 7, 0, 720973, 7, 0, 720974, 7, 0, 720975, 7, 0, 720976, 7, 0, 720977, 7, 0, 720978, 7, 0, 720979, 7, 0, 720980, 7, 0, 720981, 7, 0, 720982, 7, 0, 720983, 7, 0, 720984, 7, 0, 720985, 7, 0, 720986, 7, 0, 720987, 7, 0, 720988, 7, 0, 720989, 7, 0, 720990, 7, 0, 720991, 7, 0, 720992, 7, 0, 720993, 7, 0, 720994, 7, 0, 720995, 7, 0, 720996, 7, 0, 720997, 7, 0, 720998, 7, 0, 720999, 7, 0, 721000, 7, 0, 721001, 7, 0, 721002, 7, 0, 721003, 7, 0, 721004, 7, 0, 721005, 7, 0, 721006, 7, 0, 721007, 7, 0, 721008, 7, 0, 721009, 7, 0, 721010, 7, 0, 721011, 7, 0, 721012, 7, 0, 721013, 7, 0, 721014, 7, 0, 721015, 7, 0, 721016, 7, 0, 721017, 7, 0, 721018, 7, 0, 721019, 7, 0, 721020, 7, 0, 721021, 7, 0, 721022, 7, 0, 721023, 7, 0, 721024, 7, 0, 721025, 7, 0, 721026, 7, 0, 721027, 7, 0, 721028, 7, 0, 721029, 7, 0, 721030, 7, 0, 721031, 7, 0, 721032, 7, 0, 721033, 7, 0, 721034, 7, 0, 721035, 7, 0, 721036, 7, 0 )
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
@@ -480,11 +480,62 @@ __meta__ = {
 }
 
 [node name="Platform11" type="StaticBody2D" parent="PlatformLevel1"]
-visible = false
 collision_layer = 8
 collision_mask = 0
 
 [node name="TileMap" type="TileMap" parent="PlatformLevel1/Platform11" groups=["transitioning"]]
+material = SubResource( 8 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_use_parent = true
+format = 1
+tile_data = PoolIntArray( 393340, 3, 0, 458874, 0, 0, 458875, 1, 0, 458876, 1, 0, 458877, 2, 0 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Platform12" type="StaticBody2D" parent="PlatformLevel1"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="TileMap" type="TileMap" parent="PlatformLevel1/Platform12" groups=["transitioning"]]
+material = SubResource( 8 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_use_parent = true
+format = 1
+tile_data = PoolIntArray( 393347, 5, 0, 393348, 5, 0, 393349, 4, 0, 458883, 0, 0, 458884, 1, 0, 458885, 2, 0 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Platform13" type="StaticBody2D" parent="PlatformLevel1"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="TileMap" type="TileMap" parent="PlatformLevel1/Platform13" groups=["transitioning"]]
+material = SubResource( 8 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_use_parent = true
+format = 1
+tile_data = PoolIntArray( 393354, 5, 0, 393355, 3, 0, 393357, 5, 0, 393358, 4, 0, 393359, 3, 0, 393360, 5, 0, 458889, 0, 0, 458890, 1, 0, 458891, 1, 0, 458892, 1, 0, 458893, 1, 0, 458894, 1, 0, 458895, 1, 0, 458896, 2, 0 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Platform14" type="StaticBody2D" parent="PlatformLevel1"]
+visible = false
+collision_layer = 8
+collision_mask = 0
+
+[node name="TileMap" type="TileMap" parent="PlatformLevel1/Platform14" groups=["transitioning"]]
 material = SubResource( 8 )
 scale = Vector2( 2, 2 )
 tile_set = ExtResource( 1 )
@@ -605,11 +656,45 @@ __meta__ = {
 }
 
 [node name="Platform07" type="StaticBody2D" parent="PlatformLevel2"]
-visible = false
 collision_layer = 8
 collision_mask = 0
 
 [node name="TileMap" type="TileMap" parent="PlatformLevel2/Platform07" groups=["transitioning"]]
+material = SubResource( 9 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_use_parent = true
+format = 1
+tile_data = PoolIntArray( 196736, 5, 0, 196738, 3, 0, 262271, 0, 0, 262272, 1, 0, 262273, 1, 0, 262274, 1, 0, 262275, 2, 0 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Platform08" type="StaticBody2D" parent="PlatformLevel2"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="TileMap" type="TileMap" parent="PlatformLevel2/Platform08" groups=["transitioning"]]
+material = SubResource( 9 )
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_use_parent = true
+format = 1
+tile_data = PoolIntArray( 262280, 0, 0, 262281, 1, 0, 262282, 1, 0, 262283, 1, 0, 262284, 2, 0 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Platform09" type="StaticBody2D" parent="PlatformLevel2"]
+visible = false
+collision_layer = 8
+collision_mask = 0
+
+[node name="TileMap" type="TileMap" parent="PlatformLevel2/Platform09" groups=["transitioning"]]
 material = SubResource( 9 )
 scale = Vector2( 2, 2 )
 tile_set = ExtResource( 1 )
@@ -631,7 +716,7 @@ waves = PoolIntArray( 0 )
 position = Vector2( 1280, 0 )
 player_path = NodePath("../../Player")
 waves = PoolIntArray( 1, 2 )
-spawn_cooldown_range = Vector2( 1, 2 )
+spawn_cooldown_range = Vector2( 1.5, 2.25 )
 
 [node name="Spawnpoint01" type="Position2D" parent="Levels/Level02/Spawnpoints" index="0"]
 position = Vector2( 1312, 584 )
@@ -680,7 +765,7 @@ __meta__ = {
 position = Vector2( 2560, 0 )
 player_path = NodePath("../../Player")
 waves = PoolIntArray( 1, 2, 2 )
-spawn_cooldown_range = Vector2( 1, 2 )
+spawn_cooldown_range = Vector2( 1.5, 2.25 )
 
 [node name="Spawnpoint02" type="Position2D" parent="Levels/Level03/Spawnpoints" index="0"]
 position = Vector2( 1312, 584 )
@@ -741,7 +826,7 @@ __meta__ = {
 position = Vector2( 3840, 0 )
 player_path = NodePath("../../Player")
 waves = PoolIntArray( 2, 2, 3 )
-spawn_cooldown_range = Vector2( 1, 2 )
+spawn_cooldown_range = Vector2( 1.5, 2.25 )
 
 [node name="Spawnpoint01" type="Position2D" parent="Levels/Level04/Spawnpoints" index="0"]
 position = Vector2( 1312, 584 )
@@ -811,6 +896,7 @@ __meta__ = {
 position = Vector2( 5120, 0 )
 player_path = NodePath("../../Player")
 waves = PoolIntArray( 2, 3, 2, 4, 4 )
+spawn_cooldown_range = Vector2( 1.25, 2 )
 
 [node name="Spawnpoint01" type="Position2D" parent="Levels/Level05/Spawnpoints" index="0"]
 position = Vector2( -32, 584 )
@@ -886,6 +972,7 @@ __meta__ = {
 position = Vector2( 6400, 0 )
 player_path = NodePath("../../Player")
 waves = PoolIntArray( 2, 3, 3, 4, 5 )
+spawn_cooldown_range = Vector2( 1.25, 2 )
 
 [node name="Spawnpoint01" type="Position2D" parent="Levels/Level06/Spawnpoints" index="0"]
 position = Vector2( -32, 584 )
@@ -988,9 +1075,119 @@ __meta__ = {
 }
 
 [node name="Level07" parent="Levels" instance=ExtResource( 15 )]
-visible = false
 position = Vector2( 7680, 0 )
 player_path = NodePath("../../Player")
+waves = PoolIntArray( 3, 3, 1, 3, 5 )
+spawn_cooldown_range = Vector2( 1.25, 2 )
+
+[node name="Spawnpoint01" type="Position2D" parent="Levels/Level07/Spawnpoints" index="0"]
+position = Vector2( -32, 584 )
+
+[node name="Spawnpoint02" type="Position2D" parent="Levels/Level07/Spawnpoints" index="1"]
+position = Vector2( 1312, 584 )
+
+[node name="Spawnpoint03" type="Position2D" parent="Levels/Level07/Spawnpoints" index="2"]
+position = Vector2( 1312, 360 )
+
+[node name="WaypointNavigation" parent="Levels/Level07" index="5"]
+connection_radius = 300.0
+waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+
+[node name="Waypoint01" type="Position2D" parent="Levels/Level07/WaypointNavigation" index="0"]
+position = Vector2( 128, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint02" type="Position2D" parent="Levels/Level07/WaypointNavigation" index="1"]
+position = Vector2( 192, 360 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint03" type="Position2D" parent="Levels/Level07/WaypointNavigation" index="2"]
+position = Vector2( 352, 360 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint04" type="Position2D" parent="Levels/Level07/WaypointNavigation" index="3"]
+position = Vector2( 384, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint05" type="Position2D" parent="Levels/Level07/WaypointNavigation" index="4"]
+position = Vector2( 608, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint06" type="Position2D" parent="Levels/Level07/WaypointNavigation" index="5"]
+position = Vector2( 800, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint07" type="Position2D" parent="Levels/Level07/WaypointNavigation" index="6"]
+position = Vector2( 784, 360 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint08" type="Position2D" parent="Levels/Level07/WaypointNavigation" index="7"]
+position = Vector2( 992, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint09" type="Position2D" parent="Levels/Level07/WaypointNavigation" index="8"]
+position = Vector2( 1184, 584 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint10" type="Position2D" parent="Levels/Level07/WaypointNavigation" index="9"]
+position = Vector2( 1248, 360 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint11" type="Position2D" parent="Levels/Level07/WaypointNavigation" index="10"]
+position = Vector2( 1184, 136 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint12" type="Position2D" parent="Levels/Level07/WaypointNavigation" index="11"]
+position = Vector2( 1056, 136 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint13" type="Position2D" parent="Levels/Level07/WaypointNavigation" index="12"]
+position = Vector2( 704, 136 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint14" type="Position2D" parent="Levels/Level07/WaypointNavigation" index="13"]
+position = Vector2( 480, 136 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Waypoint15" type="Position2D" parent="Levels/Level07/WaypointNavigation" index="14"]
+position = Vector2( 96, 136 )
+__meta__ = {
+"_gizmo_extents_": 25.0
+}
+
+[node name="Level08" parent="Levels" instance=ExtResource( 15 )]
+visible = false
+position = Vector2( 8960, 0 )
+player_path = NodePath("../../Player")
+spawn_cooldown_range = Vector2( 1, 1.75 )
 
 [node name="Player" parent="." instance=ExtResource( 17 )]
 position = Vector2( 48, 584 )
@@ -1019,6 +1216,8 @@ limit_bottom = 720
 [connection signal="finished" from="Levels/Level06" to="." method="_on_Level_finished"]
 [connection signal="entered" from="Levels/Level07" to="." method="_on_Level_entered"]
 [connection signal="finished" from="Levels/Level07" to="." method="_on_Level_finished"]
+[connection signal="entered" from="Levels/Level08" to="." method="_on_Level_entered"]
+[connection signal="finished" from="Levels/Level08" to="." method="_on_Level_finished"]
 [connection signal="died" from="Player" to="." method="_on_Player_died"]
 [connection signal="orb_used" from="Player" to="." method="_on_Player_orb_used"]
 
@@ -1027,3 +1226,4 @@ limit_bottom = 720
 [editable path="Levels/Level04"]
 [editable path="Levels/Level05"]
 [editable path="Levels/Level06"]
+[editable path="Levels/Level07"]
