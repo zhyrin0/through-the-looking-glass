@@ -72,7 +72,7 @@ func finish() -> void:
 
 
 func set_spawn_cooldown() -> void:
-	spawn_cooldown.wait_time = rand_range(spawn_cooldown_range.x, spawn_cooldown_range.y)
+	spawn_cooldown.wait_time = rand_range(max(spawn_cooldown_range.x, 0.1), max(spawn_cooldown_range.y, 0.2))
 
 
 func _on_EnterArea_body_entered(_body: Node) -> void:
