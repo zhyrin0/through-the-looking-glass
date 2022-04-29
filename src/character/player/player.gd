@@ -126,7 +126,6 @@ func on_hit() -> void:
 	health -= 1
 	var shard: Shard = Algorithm.find_if(shards.get_children(), funcref(self, "_is_unbroken_shard"))
 	if shard:
-		
 		shard.break_off()
 	if health == 0:
 		emit_signal("died")
@@ -142,7 +141,9 @@ func attack() -> void:
 
 
 func heal() -> void:
-	print("heal")
+	health = max_health
+	for shard in shards.get_children():
+		shard.reset(animation_player.current_animation, animation_player.current_animation_position)
 
 
 func _on_Enemy_hit() -> void:

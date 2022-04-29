@@ -11,12 +11,9 @@ onready var animation_player := $AnimationPlayer as AnimationPlayer
 onready var tween := $Tween as Tween
 
 
-func _init() -> void:
-	reset_position = position
-
-
 func _ready() -> void:
 	set_physics_process(false)
+	reset_position = position
 
 
 func _physics_process(delta: float) -> void:
@@ -24,11 +21,13 @@ func _physics_process(delta: float) -> void:
 	global_position = break_off_global_pos
 
 
-func reset() -> void:
+func reset(current_anim: String, current_anim_pos: float) -> void:
 	set_physics_process(false)
 	position = reset_position
 	modulate = Color.white;
 	broken_off = false
+	animation_player.play(current_anim)
+	animation_player.seek(current_anim_pos, true)
 
 
 func play_animation(anim: String) -> void:
