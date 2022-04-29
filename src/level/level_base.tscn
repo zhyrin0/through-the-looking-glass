@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/character/enemy/waypoint_navigation.gd" type="Script" id=1]
 [ext_resource path="res://src/level/level_base.gd" type="Script" id=2]
 [ext_resource path="res://src/level/assets/level_arrow.png" type="Texture" id=3]
+[ext_resource path="res://src/level/assets/cleared.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 456 )
@@ -125,6 +126,10 @@ visible = false
 position = Vector2( 1216, 360 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 3 )
+
+[node name="ClearedAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -12.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 4 )

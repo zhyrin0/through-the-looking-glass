@@ -63,6 +63,8 @@ func cleared() -> void:
 		(pickup as Node2D).show()
 	var continue_sprite := $Continue as Sprite
 	continue_sprite.show()
+	var cleared_audio := $ClearedAudio as AudioStreamPlayer
+	cleared_audio.play()
 	finish()
 
 
