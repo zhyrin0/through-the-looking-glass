@@ -20,7 +20,7 @@ func _on_Player_orb_used(to_state: int, orb_screen_uv: Vector2, transition_time:
 func _on_Level_entered(level: LevelBase) -> void:
 	level_tween.interpolate_property(camera, "limit_left",
 			null, level.get_global_extents().position.x,
-			1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			2.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	level_tween.start()
 
 
@@ -30,7 +30,7 @@ func _on_Level_finished(level: LevelBase) -> void:
 		var next := levels.get_child(new_index) as LevelBase
 		level_tween.interpolate_property(camera, "limit_right",
 				null, next.get_global_extents().end.x,
-				1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+				2.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		level_tween.start()
 
 
