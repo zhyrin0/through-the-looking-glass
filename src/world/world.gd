@@ -32,3 +32,10 @@ func _on_Level_finished(level: LevelBase) -> void:
 				null, next.get_global_extents().end.x,
 				1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		level_tween.start()
+
+
+func _on_Player_died() -> void:
+	var tmp_global_pos := camera.global_position
+	camera.get_parent().remove_child(camera)
+	add_child(camera)
+	camera.global_position = tmp_global_pos

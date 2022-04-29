@@ -4,6 +4,7 @@ const Shard := preload("shard/shard.gd")
 
 
 signal orb_used(to_state, orb_screen_uv, transition_time)
+signal died
 
 enum AttackState {
 	NOT_ATTACKING,
@@ -128,6 +129,7 @@ func on_hit() -> void:
 		
 		shard.break_off()
 	if health == 0:
+		emit_signal("died")
 		queue_free()
 
 

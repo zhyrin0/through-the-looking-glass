@@ -1019,6 +1019,7 @@ limit_bottom = 720
 [connection signal="finished" from="Levels/Level06" to="." method="_on_Level_finished"]
 [connection signal="entered" from="Levels/Level07" to="." method="_on_Level_entered"]
 [connection signal="finished" from="Levels/Level07" to="." method="_on_Level_finished"]
+[connection signal="died" from="Player" to="." method="_on_Player_died"]
 [connection signal="orb_used" from="Player" to="." method="_on_Player_orb_used"]
 
 [editable path="Levels/Level02"]
