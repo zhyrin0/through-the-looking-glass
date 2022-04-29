@@ -946,7 +946,7 @@ position = Vector2( 1312, 584 )
 
 [node name="WaypointNavigation" parent="Levels/Level02" index="5"]
 connection_radius = 200.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level02/WaypointNavigation" index="0"]
 position = Vector2( 1120, 584 )
@@ -1003,7 +1003,7 @@ position = Vector2( 1312, 584 )
 
 [node name="WaypointNavigation" parent="Levels/Level03" index="5"]
 connection_radius = 270.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level03/WaypointNavigation" index="0"]
 position = Vector2( 160, 584 )
@@ -1070,7 +1070,7 @@ position = Vector2( 1312, 360 )
 
 [node name="WaypointNavigation" parent="Levels/Level04" index="5"]
 connection_radius = 265.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level04/WaypointNavigation" index="0"]
 position = Vector2( 1152, 584 )
@@ -1146,7 +1146,7 @@ position = Vector2( 1312, 360 )
 
 [node name="WaypointNavigation" parent="Levels/Level05" index="5"]
 connection_radius = 256.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level05/WaypointNavigation" index="0"]
 position = Vector2( 96, 360 )
@@ -1222,7 +1222,7 @@ position = Vector2( 1312, 136 )
 
 [node name="WaypointNavigation" parent="Levels/Level06" index="5"]
 connection_radius = 300.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level06/WaypointNavigation" index="0"]
 position = Vector2( 192, 584 )
@@ -1328,7 +1328,7 @@ position = Vector2( 1312, 360 )
 
 [node name="WaypointNavigation" parent="Levels/Level07" index="5"]
 connection_radius = 300.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level07/WaypointNavigation" index="0"]
 position = Vector2( 128, 584 )
@@ -1443,7 +1443,7 @@ position = Vector2( 1312, 360 )
 
 [node name="WaypointNavigation" parent="Levels/Level08" index="5"]
 connection_radius = 270.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level08/WaypointNavigation" index="0"]
 position = Vector2( 224, 584 )
@@ -1552,7 +1552,7 @@ position = Vector2( 1312, 136 )
 
 [node name="WaypointNavigation" parent="Levels/Level09" index="5"]
 connection_radius = 280.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level09/WaypointNavigation" index="0"]
 position = Vector2( 128, 584 )
@@ -1688,7 +1688,7 @@ position = Vector2( 1312, 136 )
 
 [node name="WaypointNavigation" parent="Levels/Level10" index="5"]
 connection_radius = 330.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level10/WaypointNavigation" index="0"]
 position = Vector2( 288, 584 )
