@@ -1,6 +1,8 @@
 extends "level_base.gd"
 
 
+signal game_finished
+
 onready var eyes := $Eyes as Area2D
 onready var anim_player := $Eyes/AnimationPlayer as AnimationPlayer
 onready var win := $Win as Sprite
@@ -8,6 +10,10 @@ onready var win := $Win as Sprite
 
 func _ready() -> void:
 	anim_player.play("float")
+
+
+func cleared() -> void:
+	pass
 
 
 func _on_EnterArea_body_entered(_body: Node) -> void:
@@ -25,3 +31,6 @@ func _on_EnterArea_body_entered(_body: Node) -> void:
 func _on_Eyes_area_entered(area: Area2D) -> void:
 	win.show()
 	eyes.queue_free()
+	yield(get_tree().create_timer(7.0), "timeout")
+	
+	emit_signal("game_finished")

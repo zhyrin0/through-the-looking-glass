@@ -7,6 +7,7 @@ const WaypointNavigation := preload("res://src/character/enemy/waypoint_navigati
 
 
 signal entered(p_self)
+signal enemy_created(enemy)
 signal finished(p_self)
 
 const BARRIER_COLLISION_BIT := 5
@@ -31,6 +32,8 @@ func _ready() -> void:
 	set_spawn_cooldown()
 	for pickup in pickups.get_children():
 		(pickup as Node2D).hide()
+	var animation_player := $AnimationPlayer as AnimationPlayer
+	animation_player.play("move_arrow")
 
 
 func get_global_extents() -> Rect2:
@@ -51,14 +54,23 @@ func spawn() -> void:
 	var enemy := EnemyScene.instance() as Enemy
 	var spawnpoint := spawnpoints.get_child(randi() % spawnpoints.get_child_count()) as Node2D
 	enemy.init(player.state, player, spawnpoint.global_position)
+	enemy.connect("created", self, "_on_Enemy_created", [], CONNECT_ONESHOT)
 	enemy.connect("request_path", navigation, "on_Enemy_request_path")
 	enemy.connect("hit", self, "_on_Enemy_hit")
 	enemies.add_child(enemy)
 
 
+func _on_Enemy_created(enemy: Enemy) -> void:
+	emit_signal("enemy_created", enemy)
+
+
 func cleared() -> void:
 	for pickup in pickups.get_children():
 		(pickup as Node2D).show()
+	var continue_sprite := $Continue as Sprite
+	continue_sprite.show()
+	var cleared_audio := $ClearedAudio as AudioStreamPlayer
+	cleared_audio.play()
 	finish()
 
 
@@ -68,7 +80,7 @@ func finish() -> void:
 
 
 func set_spawn_cooldown() -> void:
-	spawn_cooldown.wait_time = rand_range(spawn_cooldown_range.x, spawn_cooldown_range.y)
+	spawn_cooldown.wait_time = rand_range(max(spawn_cooldown_range.x, 0.1), max(spawn_cooldown_range.y, 0.2))
 
 
 func _on_EnterArea_body_entered(_body: Node) -> void:

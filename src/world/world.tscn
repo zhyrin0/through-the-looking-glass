@@ -939,14 +939,14 @@ position = Vector2( 1280, 0 )
 script = ExtResource( 21 )
 player_path = NodePath("../../Player")
 waves = PoolIntArray( 1, 2 )
-spawn_cooldown_range = Vector2( 1.25, 2.5 )
+spawn_cooldown_range = Vector2( 1, 2 )
 
 [node name="Spawnpoint01" type="Position2D" parent="Levels/Level02/Spawnpoints" index="0"]
 position = Vector2( 1312, 584 )
 
 [node name="WaypointNavigation" parent="Levels/Level02" index="5"]
 connection_radius = 200.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level02/WaypointNavigation" index="0"]
 position = Vector2( 1120, 584 )
@@ -995,15 +995,15 @@ offset = Vector2( -426, 0 )
 [node name="Level03" parent="Levels" instance=ExtResource( 15 )]
 position = Vector2( 2560, 0 )
 player_path = NodePath("../../Player")
-waves = PoolIntArray( 1, 2, 2 )
-spawn_cooldown_range = Vector2( 1.5, 2.25 )
+waves = PoolIntArray( 2, 2, 3 )
+spawn_cooldown_range = Vector2( 1, 2 )
 
 [node name="Spawnpoint02" type="Position2D" parent="Levels/Level03/Spawnpoints" index="0"]
 position = Vector2( 1312, 584 )
 
 [node name="WaypointNavigation" parent="Levels/Level03" index="5"]
 connection_radius = 270.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level03/WaypointNavigation" index="0"]
 position = Vector2( 160, 584 )
@@ -1059,8 +1059,8 @@ position = Vector2( 800, 360 )
 [node name="Level04" parent="Levels" instance=ExtResource( 15 )]
 position = Vector2( 3840, 0 )
 player_path = NodePath("../../Player")
-waves = PoolIntArray( 2, 2, 3 )
-spawn_cooldown_range = Vector2( 1.5, 2.25 )
+waves = PoolIntArray( 2, 2, 4 )
+spawn_cooldown_range = Vector2( 1, 1.75 )
 
 [node name="Spawnpoint01" type="Position2D" parent="Levels/Level04/Spawnpoints" index="0"]
 position = Vector2( 1312, 584 )
@@ -1070,7 +1070,7 @@ position = Vector2( 1312, 360 )
 
 [node name="WaypointNavigation" parent="Levels/Level04" index="5"]
 connection_radius = 265.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level04/WaypointNavigation" index="0"]
 position = Vector2( 1152, 584 )
@@ -1130,7 +1130,7 @@ __meta__ = {
 position = Vector2( 5120, 0 )
 player_path = NodePath("../../Player")
 waves = PoolIntArray( 2, 3, 2, 4, 4 )
-spawn_cooldown_range = Vector2( 1.25, 2 )
+spawn_cooldown_range = Vector2( 1, 1.75 )
 
 [node name="Spawnpoint01" type="Position2D" parent="Levels/Level05/Spawnpoints" index="0"]
 position = Vector2( -32, 584 )
@@ -1146,7 +1146,7 @@ position = Vector2( 1312, 360 )
 
 [node name="WaypointNavigation" parent="Levels/Level05" index="5"]
 connection_radius = 256.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level05/WaypointNavigation" index="0"]
 position = Vector2( 96, 360 )
@@ -1206,7 +1206,7 @@ __meta__ = {
 position = Vector2( 6400, 0 )
 player_path = NodePath("../../Player")
 waves = PoolIntArray( 2, 3, 3, 4, 5 )
-spawn_cooldown_range = Vector2( 1.25, 2 )
+spawn_cooldown_range = Vector2( 0.75, 1.75 )
 
 [node name="Spawnpoint01" type="Position2D" parent="Levels/Level06/Spawnpoints" index="0"]
 position = Vector2( -32, 584 )
@@ -1222,7 +1222,7 @@ position = Vector2( 1312, 136 )
 
 [node name="WaypointNavigation" parent="Levels/Level06" index="5"]
 connection_radius = 300.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level06/WaypointNavigation" index="0"]
 position = Vector2( 192, 584 )
@@ -1315,7 +1315,7 @@ position = Vector2( 576, 360 )
 position = Vector2( 7680, 0 )
 player_path = NodePath("../../Player")
 waves = PoolIntArray( 3, 3, 1, 3, 5 )
-spawn_cooldown_range = Vector2( 1.25, 2 )
+spawn_cooldown_range = Vector2( 0.75, 1.75 )
 
 [node name="Spawnpoint01" type="Position2D" parent="Levels/Level07/Spawnpoints" index="0"]
 position = Vector2( -32, 584 )
@@ -1328,7 +1328,7 @@ position = Vector2( 1312, 360 )
 
 [node name="WaypointNavigation" parent="Levels/Level07" index="5"]
 connection_radius = 300.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level07/WaypointNavigation" index="0"]
 position = Vector2( 128, 584 )
@@ -1423,7 +1423,7 @@ __meta__ = {
 [node name="Level08" parent="Levels" instance=ExtResource( 15 )]
 position = Vector2( 8960, 0 )
 player_path = NodePath("../../Player")
-waves = PoolIntArray( 2, 3, 3, 2, 5 )
+waves = PoolIntArray( 3, 3, 4, 2, 5 )
 spawn_cooldown_range = Vector2( 0.75, 1.35 )
 
 [node name="Spawnpoint01" type="Position2D" parent="Levels/Level08/Spawnpoints" index="0"]
@@ -1443,7 +1443,7 @@ position = Vector2( 1312, 360 )
 
 [node name="WaypointNavigation" parent="Levels/Level08" index="5"]
 connection_radius = 270.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level08/WaypointNavigation" index="0"]
 position = Vector2( 224, 584 )
@@ -1532,7 +1532,7 @@ __meta__ = {
 [node name="Level09" parent="Levels" instance=ExtResource( 15 )]
 position = Vector2( 10240, 0 )
 player_path = NodePath("../../Player")
-waves = PoolIntArray( 2, 3, 4, 4, 3, 6 )
+waves = PoolIntArray( 3, 3, 4, 4, 3, 6 )
 spawn_cooldown_range = Vector2( 0.5, 1 )
 
 [node name="Spawnpoint01" type="Position2D" parent="Levels/Level09/Spawnpoints" index="0"]
@@ -1552,7 +1552,7 @@ position = Vector2( 1312, 136 )
 
 [node name="WaypointNavigation" parent="Levels/Level09" index="5"]
 connection_radius = 280.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level09/WaypointNavigation" index="0"]
 position = Vector2( 128, 584 )
@@ -1665,7 +1665,7 @@ __meta__ = {
 [node name="Level10" parent="Levels" instance=ExtResource( 15 )]
 position = Vector2( 11520, 0 )
 player_path = NodePath("../../Player")
-waves = PoolIntArray( 2, 3, 3, 4, 5, 4, 7 )
+waves = PoolIntArray( 3, 3, 3, 4, 5, 4, 7 )
 spawn_cooldown_range = Vector2( 0.5, 1 )
 
 [node name="Spawnpoint01" type="Position2D" parent="Levels/Level10/Spawnpoints" index="0"]
@@ -1688,7 +1688,7 @@ position = Vector2( 1312, 136 )
 
 [node name="WaypointNavigation" parent="Levels/Level10" index="5"]
 connection_radius = 330.0
-waypoint_color = Color( 0, 0.501961, 1, 0.0941176 )
+waypoint_color = Color( 0, 0.501961, 1, 0 )
 
 [node name="Waypoint01" type="Position2D" parent="Levels/Level10/WaypointNavigation" index="0"]
 position = Vector2( 288, 584 )
@@ -1812,27 +1812,39 @@ limit_bottom = 720
 
 [node name="GlassTransition" type="Tween" parent="."]
 
+[connection signal="enemy_created" from="Levels/Level01" to="." method="_on_Level_enemy_created"]
 [connection signal="finished" from="Levels/Level01" to="." method="_on_Level_finished"]
+[connection signal="enemy_created" from="Levels/Level02" to="." method="_on_Level_enemy_created"]
 [connection signal="entered" from="Levels/Level02" to="." method="_on_Level_entered"]
 [connection signal="finished" from="Levels/Level02" to="." method="_on_Level_finished"]
+[connection signal="enemy_created" from="Levels/Level03" to="." method="_on_Level_enemy_created"]
 [connection signal="entered" from="Levels/Level03" to="." method="_on_Level_entered"]
 [connection signal="finished" from="Levels/Level03" to="." method="_on_Level_finished"]
+[connection signal="enemy_created" from="Levels/Level04" to="." method="_on_Level_enemy_created"]
 [connection signal="entered" from="Levels/Level04" to="." method="_on_Level_entered"]
 [connection signal="finished" from="Levels/Level04" to="." method="_on_Level_finished"]
+[connection signal="enemy_created" from="Levels/Level05" to="." method="_on_Level_enemy_created"]
 [connection signal="entered" from="Levels/Level05" to="." method="_on_Level_entered"]
 [connection signal="finished" from="Levels/Level05" to="." method="_on_Level_finished"]
+[connection signal="enemy_created" from="Levels/Level06" to="." method="_on_Level_enemy_created"]
 [connection signal="entered" from="Levels/Level06" to="." method="_on_Level_entered"]
 [connection signal="finished" from="Levels/Level06" to="." method="_on_Level_finished"]
+[connection signal="enemy_created" from="Levels/Level07" to="." method="_on_Level_enemy_created"]
 [connection signal="entered" from="Levels/Level07" to="." method="_on_Level_entered"]
 [connection signal="finished" from="Levels/Level07" to="." method="_on_Level_finished"]
+[connection signal="enemy_created" from="Levels/Level08" to="." method="_on_Level_enemy_created"]
 [connection signal="entered" from="Levels/Level08" to="." method="_on_Level_entered"]
 [connection signal="finished" from="Levels/Level08" to="." method="_on_Level_finished"]
+[connection signal="enemy_created" from="Levels/Level09" to="." method="_on_Level_enemy_created"]
 [connection signal="entered" from="Levels/Level09" to="." method="_on_Level_entered"]
 [connection signal="finished" from="Levels/Level09" to="." method="_on_Level_finished"]
+[connection signal="enemy_created" from="Levels/Level10" to="." method="_on_Level_enemy_created"]
 [connection signal="entered" from="Levels/Level10" to="." method="_on_Level_entered"]
 [connection signal="finished" from="Levels/Level10" to="." method="_on_Level_finished"]
+[connection signal="enemy_created" from="Levels/Level11" to="." method="_on_Level_enemy_created"]
 [connection signal="entered" from="Levels/Level11" to="." method="_on_Level_entered"]
 [connection signal="finished" from="Levels/Level11" to="." method="_on_Level_finished"]
+[connection signal="game_finished" from="Levels/Level11" to="." method="_on_Level11_game_finished"]
 [connection signal="area_entered" from="Levels/Level11/Eyes" to="Levels/Level11" method="_on_Eyes_area_entered"]
 [connection signal="died" from="Player" to="." method="_on_Player_died"]
 [connection signal="orb_used" from="Player" to="." method="_on_Player_orb_used"]

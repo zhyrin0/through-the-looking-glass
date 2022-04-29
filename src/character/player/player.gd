@@ -20,9 +20,11 @@ var use_strong_attack := false
 var charge_audio_triggered := false
 var score := 0
 var lock_animation := false
+var can_use_orb := false
 onready var health := max_health
 onready var shards := $Pivot/Shards as Node
-onready var charge_audio := $ChargeAudio as AudioStreamPlayer
+onready var orb_position := $Pivot/OrbPosition as Position2D
+onready var orb_audio := $OrbAudio as AudioStreamPlayer
 onready var attack_cooldown := $AttackCooldown as Timer
 onready var transition_cooldown := $TransitionCooldown as Timer
 
@@ -36,8 +38,11 @@ func _process(delta: float) -> void:
 	var attack_state := attack_logic(delta)
 	pivot.scale.x = sign(get_local_mouse_position().x)
 	play_animation(attack_state)
-	if transition_cooldown.is_stopped() and Input.is_action_just_pressed("use"):
-		use_orb()
+	if transition_cooldown.is_stopped() and Input.is_action_just_pressed("use") and \
+			not lock_animation and can_use_orb:
+		lock_animation = true
+		animation_player.play("use_orb")
+		play_shard_animation("use_orb")
 
 
 func _physics_process(delta: float) -> void:
@@ -62,9 +67,9 @@ func attack_logic(delta: float) -> int:
 		if Input.is_action_pressed("attack"):
 			result = AttackState.STARTING if attack_charge == 0.0 else AttackState.CHARGING
 			attack_charge += delta
-			if attack_charge >= strong_charge and not charge_audio_triggered:
-				charge_audio_triggered = true
-				charge_audio.play()
+#			if attack_charge >= strong_charge and not charge_audio_triggered:
+#				charge_audio_triggered = true
+#				charge_audio.play()
 		elif Input.is_action_just_released("attack"):
 			result = AttackState.RELEASING
 			attack_cooldown.start()
@@ -111,7 +116,8 @@ func _play_shard_animation(shard: Shard, args: Array) -> void:
 
 
 func use_orb() -> void:
-	var orb_pos := projectile_pos.get_global_transform_with_canvas().origin
+	orb_audio.play()
+	var orb_pos := orb_position.get_global_transform_with_canvas().origin
 	var viewport_size := get_viewport_rect().size
 	var orb_uv := Vector2(clamp(orb_pos.x, 0.0, viewport_size.x), clamp(orb_pos.y, 0.0, viewport_size.y))
 	orb_uv /= viewport_size
@@ -137,7 +143,7 @@ func _is_unbroken_shard(shard: Shard, _args: Array) -> bool:
 
 
 func attack() -> void:
-	_attack(Projectile.Owner.PLAYER, get_global_mouse_position(), use_strong_attack)
+	_attack(Projectile.Owner.PLAYER, get_global_mouse_position(), false)
 
 
 func heal() -> void:
@@ -151,5 +157,5 @@ func _on_Enemy_hit() -> void:
 
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
-	if anim_name == "attack_release":
+	if anim_name in ["attack_release", "use_orb"]:
 		lock_animation = false
