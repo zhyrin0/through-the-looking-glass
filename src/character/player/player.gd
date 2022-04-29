@@ -20,6 +20,7 @@ var use_strong_attack := false
 var charge_audio_triggered := false
 var score := 0
 var lock_animation := false
+var can_use_orb := false
 onready var health := max_health
 onready var shards := $Pivot/Shards as Node
 onready var orb_position := $Pivot/OrbPosition as Position2D
@@ -37,7 +38,8 @@ func _process(delta: float) -> void:
 	var attack_state := attack_logic(delta)
 	pivot.scale.x = sign(get_local_mouse_position().x)
 	play_animation(attack_state)
-	if transition_cooldown.is_stopped() and Input.is_action_just_pressed("use") and not lock_animation:
+	if transition_cooldown.is_stopped() and Input.is_action_just_pressed("use") and \
+			not lock_animation and can_use_orb:
 		lock_animation = true
 		animation_player.play("use_orb")
 		play_shard_animation("use_orb")

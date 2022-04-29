@@ -16,3 +16,4 @@ func spawn() -> void:
 
 func _on_Enemy_hit_while_invulnerable() -> void:
 	orb_text_sprite.visible = true
+	player.can_use_orb = true
