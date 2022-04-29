@@ -4,6 +4,7 @@ const Shard := preload("shard/shard.gd")
 
 
 signal orb_used(to_state, orb_screen_uv, transition_time)
+signal died
 
 enum AttackState {
 	NOT_ATTACKING,
@@ -123,15 +124,26 @@ func on_hit() -> void:
 	if state == State.CLAY:
 		return
 	health -= 1
-	if shards.get_child_count() > 0:
-		var shard := shards.get_child(0) as Shard
+	var shard: Shard = Algorithm.find_if(shards.get_children(), funcref(self, "_is_unbroken_shard"))
+	if shard:
 		shard.break_off()
 	if health == 0:
+		emit_signal("died")
 		queue_free()
+
+
+func _is_unbroken_shard(shard: Shard, _args: Array) -> bool:
+	return not shard.broken_off
 
 
 func attack() -> void:
 	_attack(Projectile.Owner.PLAYER, get_global_mouse_position(), use_strong_attack)
+
+
+func heal() -> void:
+	health = max_health
+	for shard in shards.get_children():
+		shard.reset(animation_player.current_animation, animation_player.current_animation_position)
 
 
 func _on_Enemy_hit() -> void:
