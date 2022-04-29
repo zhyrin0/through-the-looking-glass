@@ -1,6 +1,7 @@
 extends "../character_base.gd"
 
 
+signal created(p_self)
 signal request_path(p_self)
 signal hit
 signal hit_while_invulnerable
@@ -25,8 +26,9 @@ func init(p_state: int, p_player: Node2D, p_global_pos: Vector2) -> void:
 	global_position = p_global_pos
 	state = p_state
 	player = p_player
-	sprite.shader.set_shader_param("to_state", 1 - p_state)
-	sprite.shader.set_shader_param("transition", 0.0)
+#	sprite.shader.set_shader_param("to_state", 1 - p_state)
+#	sprite.shader.set_shader_param("transition", 0.0)
+	emit_signal("created", self)
 	emit_signal("request_path", self)
 
 

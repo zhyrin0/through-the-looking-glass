@@ -7,6 +7,7 @@ const WaypointNavigation := preload("res://src/character/enemy/waypoint_navigati
 
 
 signal entered(p_self)
+signal enemy_created(enemy)
 signal finished(p_self)
 
 const BARRIER_COLLISION_BIT := 5
@@ -53,9 +54,14 @@ func spawn() -> void:
 	var enemy := EnemyScene.instance() as Enemy
 	var spawnpoint := spawnpoints.get_child(randi() % spawnpoints.get_child_count()) as Node2D
 	enemy.init(player.state, player, spawnpoint.global_position)
+	enemy.connect("created", self, "_on_Enemy_created", [], CONNECT_ONESHOT)
 	enemy.connect("request_path", navigation, "on_Enemy_request_path")
 	enemy.connect("hit", self, "_on_Enemy_hit")
 	enemies.add_child(enemy)
+
+
+func _on_Enemy_created(enemy: Enemy) -> void:
+	emit_signal("enemy_created", enemy)
 
 
 func cleared() -> void:
