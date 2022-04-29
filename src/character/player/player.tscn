@@ -277,7 +277,6 @@ anims/use_orb = SubResource( 8 )
 stream = ExtResource( 3 )
 
 [node name="AttackCooldown" type="Timer" parent="." index="6"]
-wait_time = 0.5
 one_shot = true
 
 [node name="TransitionCooldown" type="Timer" parent="." index="7"]
