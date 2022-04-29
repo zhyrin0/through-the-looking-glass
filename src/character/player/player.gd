@@ -62,9 +62,9 @@ func attack_logic(delta: float) -> int:
 		if Input.is_action_pressed("attack"):
 			result = AttackState.STARTING if attack_charge == 0.0 else AttackState.CHARGING
 			attack_charge += delta
-			if attack_charge >= strong_charge and not charge_audio_triggered:
-				charge_audio_triggered = true
-				charge_audio.play()
+#			if attack_charge >= strong_charge and not charge_audio_triggered:
+#				charge_audio_triggered = true
+#				charge_audio.play()
 		elif Input.is_action_just_released("attack"):
 			result = AttackState.RELEASING
 			attack_cooldown.start()
@@ -137,7 +137,7 @@ func _is_unbroken_shard(shard: Shard, _args: Array) -> bool:
 
 
 func attack() -> void:
-	_attack(Projectile.Owner.PLAYER, get_global_mouse_position(), use_strong_attack)
+	_attack(Projectile.Owner.PLAYER, get_global_mouse_position(), false)
 
 
 func heal() -> void:
