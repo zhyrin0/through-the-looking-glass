@@ -1003,7 +1003,7 @@ __meta__ = {
 }
 
 [node name="Pickup" parent="Levels/Level03/Pickups" index="0" instance=ExtResource( 22 )]
-position = Vector2( 736, 352 )
+position = Vector2( 800, 360 )
 
 [node name="Level04" parent="Levels" instance=ExtResource( 15 )]
 position = Vector2( 3840, 0 )
@@ -1256,6 +1256,9 @@ position = Vector2( 1120, 136 )
 __meta__ = {
 "_gizmo_extents_": 25.0
 }
+
+[node name="Pickup" parent="Levels/Level06/Pickups" index="0" instance=ExtResource( 22 )]
+position = Vector2( 576, 360 )
 
 [node name="Level07" parent="Levels" instance=ExtResource( 15 )]
 position = Vector2( 7680, 0 )
