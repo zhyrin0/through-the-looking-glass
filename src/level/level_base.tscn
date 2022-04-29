@@ -138,7 +138,7 @@ anims/move_arrow = SubResource( 5 )
 [node name="SpawnCooldown" type="Timer" parent="."]
 
 [node name="WaveCooldown" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
 [connection signal="body_entered" from="EnterArea" to="." method="_on_EnterArea_body_entered" flags=6]
