@@ -12,6 +12,8 @@ config_version=4
 
 config/name="Through the Looking Glass"
 run/main_scene="res://src/main/main.tscn"
+boot_splash/image="res://banner.png"
+boot_splash/use_filter=false
 config/icon="res://icon.png"
 
 [autoload]
