@@ -3,6 +3,7 @@ extends "../character_base.gd"
 
 signal request_path(p_self)
 signal hit
+signal hit_while_invulnerable
 
 const WAYPOINT_DEADZONE := 16.0
 const WAYPOINT_EPSILON := WAYPOINT_DEADZONE / 2.0
@@ -86,6 +87,7 @@ func animate_transition(_transition: float) -> void:
 
 func on_hit() -> void:
 	if state == State.CLAY:
+		emit_signal("hit_while_invulnerable")
 		return
 	emit_signal("hit")
 	collision_layer = 0
