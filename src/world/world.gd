@@ -42,3 +42,7 @@ func _on_Player_died() -> void:
 	yield(get_tree().create_timer(2.0), "timeout")
 	
 	queue_free()
+
+
+func _on_Level11_game_finished() -> void:
+	queue_free()

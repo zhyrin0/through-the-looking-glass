@@ -1833,6 +1833,7 @@ limit_bottom = 720
 [connection signal="finished" from="Levels/Level10" to="." method="_on_Level_finished"]
 [connection signal="entered" from="Levels/Level11" to="." method="_on_Level_entered"]
 [connection signal="finished" from="Levels/Level11" to="." method="_on_Level_finished"]
+[connection signal="game_finished" from="Levels/Level11" to="." method="_on_Level11_game_finished"]
 [connection signal="area_entered" from="Levels/Level11/Eyes" to="Levels/Level11" method="_on_Eyes_area_entered"]
 [connection signal="died" from="Player" to="." method="_on_Player_died"]
 [connection signal="orb_used" from="Player" to="." method="_on_Player_orb_used"]
