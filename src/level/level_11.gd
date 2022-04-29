@@ -12,6 +12,10 @@ func _ready() -> void:
 	anim_player.play("float")
 
 
+func cleared() -> void:
+	pass
+
+
 func _on_EnterArea_body_entered(_body: Node) -> void:
 	left_barrier.set_collision_layer_bit(BARRIER_COLLISION_BIT, true)
 	var enter_area := $EnterArea as Area2D
@@ -27,6 +31,6 @@ func _on_EnterArea_body_entered(_body: Node) -> void:
 func _on_Eyes_area_entered(area: Area2D) -> void:
 	win.show()
 	eyes.queue_free()
-	yield(get_tree().create_timer(5.0), "timeout")
+	yield(get_tree().create_timer(7.0), "timeout")
 	
 	emit_signal("game_finished")
