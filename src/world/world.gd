@@ -63,8 +63,12 @@ func _on_Player_died() -> void:
 	camera.global_position = tmp_global_pos
 	yield(get_tree().create_timer(2.0), "timeout")
 	
+	for transitioner in get_tree().get_nodes_in_group("transitioning"):
+		transitioner.set_transition_initial_values(1, Vector2.ZERO)
 	queue_free()
 
 
 func _on_Level11_game_finished() -> void:
+	for transitioner in get_tree().get_nodes_in_group("transitioning"):
+		transitioner.set_transition_initial_values(1, Vector2.ZERO)
 	queue_free()
