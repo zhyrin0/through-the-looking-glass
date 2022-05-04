@@ -134,6 +134,10 @@ func on_hit() -> void:
 	if shard:
 		shard.break_off()
 	if health == 0:
+		var sprite := $Pivot/Sprite as Sprite
+		sprite.set_transition_initial_values(1, Vector2.ZERO)
+		for reset_shard in shards.get_children():
+			reset_shard.get_node("Sprite").set_transition_initial_values(1, Vector2.ZERO)
 		emit_signal("died")
 		queue_free()
 
